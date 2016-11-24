@@ -1,0 +1,139 @@
+<h1 class="page-header text-overflow">Product details</h1>
+<div class="panel">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success pull-right" ng-click="save()"
+                            ng-disabled="details.$invalid">Save
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Code/Name <span class="required-asterix">*</span></label>
+                        <input type="text" class="form-control" placeholder="Code" ng-model="product.Code" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="description">Description <span class="required-asterix">*</span></label>
+                        <input type="text" class="form-control" placeholder="Description"
+                               ng-model="product.Description" required>
+                    </div>
+                </div>
+
+                <div ng-show="accounts" class="col-md-6">
+                    <div class="form-group" ng-class="{placeholder: product.Account == default_sales_account}">
+                        <label for="sales_account">Sales Account <span class="required-asterix">*</span></label>
+                        <selectize id="sales-account" config="accountConfig" options='accounts'
+                                   ng-model="product.Account"></selectize>
+                    </div>
+                </div>
+                <div ng-show="taxRates" class="col-md-6">
+                    <div class="form-group" ng-class="{placeholder: product.TaxRate == default_tax_rule}">
+                        <label for="sales_account">Tax Rule <span class="required-asterix">*</span></label>
+                        <selectize id="tax_rate-account" config="taxConfig" options='taxRates'
+                                   ng-model="product.TaxRate"></selectize>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div ng-show="is_new">
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" ng-click="generate()" ng-disabled="!product.Code">
+                        Generate
+                    </button>
+                </div>
+            </div>
+            <div class="row generation">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <table class="options">
+                            <thead>
+                            <tr>
+                                <th ng-repeat="variant in variants">
+                                    <div class="input-group mar-btm">
+                                        <input type="text" class="form-control" ng-model="variant">
+                                        <span class="input-group-addon"><a class="pin remove fa fa-remove"
+                                                                           ng-click="removeVariant(variant)"
+                                                                           ng-confirm></a></span>
+                                    </div>
+                                </th>
+                                <th class="new-variable">
+                                    <div class="input-group mar-btm">
+                                        <input type="text" class="form-control" ng-model="newVariant"
+                                               placeholder="Add variant">
+
+                                        <span class="input-group-addon btn btn-success" ng-click="addVariant()">
+                                            <a href="#" class="pin add fa fa-plus"></a>
+                                        </span>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td ng-repeat="variant in variants">
+                                    <ul ui-sortable ng-model="options[variant]">
+                                        <li ng-repeat="option in options[variant] track by $index">
+                                            <div class="input-group mar-btm">
+                                                <span class="input-group-addon move">
+                                                    <a>:::</a>
+                                                </span>
+                                                <input type="text" ng-model="options[variant][$index]" set-focus
+                                                       ng-model-options="{ updateOn: 'blur' }"
+                                                       on-enter="addOption(variant)"
+                                                       class="form-control">
+                                                <span class="input-group-addon">
+                                                    <a class="pin remove fa fa-remove"
+                                                       ng-click="removeOptions(variant, $index)"
+                                                       ng-confirm></a>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <button type="button" ng-click="addOption(variant)"
+                                                    class="btn btn-default btn-sm">Add option
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="!is_new">
+    <h3 class="panel-title">Products</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary pull-right" ng-click="addProductItem()">Add new Product Item</button>
+        </div>
+    </div>
+    <label>Show Inactive:
+        <input type="checkbox" ng-model="showInactive" ng-change="toggleFiltering()">
+    </label><br/>
+
+    <div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"></div>
+</div>
+
+<div class="panel" ng-if="productItems && is_new">
+    <div class="panel-heading">
+        <h3 class="panel-title">Products</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div ng-jsgrid="gridConfig"></div>
+        </div>
+    </div>
+</div>

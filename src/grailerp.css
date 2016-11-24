@@ -1,0 +1,47 @@
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  padding: 40px;
+  background-color: white; }
+
+.generation {
+  padding-top: 20px; }
+  .generation .options th {
+    padding-right: 20px; }
+  .generation .options td {
+    vertical-align: top; }
+    .generation .options td ul {
+      padding: 0 25px 0 0; }
+      .generation .options td ul li {
+        list-style-type: none;
+        margin-top: 10px; }
+        .generation .options td ul li .input-group-addon {
+          background-color: white;
+          min-width: 20px; }
+          .generation .options td ul li .input-group-addon a.remove {
+            cursor: pointer; }
+        .generation .options td ul li .input-group-addon.move {
+          cursor: all-scroll;
+          min-width: 20px; }
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  padding: 40px;
+  background-color: white; }
+
+.generation {
+  padding-top: 20px; }
+  .generation .options th {
+    padding-right: 20px; }
+  .generation .options td {
+    vertical-align: top; }
+    .generation .options td ul {
+      padding: 0 25px 0 0; }
+      .generation .options td ul li {
+        list-style-type: none;
+        margin-top: 10px; }
+        .generation .options td ul li .input-group-addon {
+          background-color: white;
+          min-width: 20px; }
+          .generation .options td ul li .input-group-addon a.remove {
+            cursor: pointer; }
+        .generation .options td ul li .input-group-addon.move {
+          cursor: all-scroll;
+          min-width: 20px; }

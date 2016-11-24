@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="grail" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="grail" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="grail" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrailERP</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+</head>
+
+<body ng-app="grail">
+  <div id="container" class="effect mainnav-lg">
+
+    <header id="navbar">
+      <div id="navbar-container" class="boxed">
+
+        <!--Brand logo & name-->
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">
+            <img src="images/logo.png" alt="GrailERP Logo" class="brand-icon">
+            <div class="brand-title">
+              <span class="brand-text">GrailERP</span>
+            </div>
+          </a>
+        </div>
+        <!--End brand logo & name-->
+
+
+        <!--Navbar Dropdown-->
+        <div class="navbar-content clearfix">
+          <ul class="nav navbar-top-links pull-left">
+
+            <!--Navigation toogle button-->
+            <li class="tgl-menu-btn">
+              <a class="mainnav-toggle" href="#">
+                <i class="fa fa-navicon fa-lg"></i>
+              </a>
+            </li>
+            <!--End Navigation toogle button-->
+
+          </ul>
+          <ul class="nav navbar-top-links pull-right">
+            <!--Language selector-->
+            <li class="dropdown">
+              <span class="lang-selector topinfo">
+                                <img class="lang-flag" src="images/flags/united-kingdom.png" alt="English">
+                                <a ui-sref="accounts" ui-sref-active="active">login</a>
+                            </span>
+            </li>
+            <!--End language selector-->
+
+          </ul>
+        </div>
+        <!--End Navbar Dropdown-->
+
+      </div>
+    </header>
+    <!--END NAVBAR-->
+
+    <div class="boxed">
+
+      <!--CONTENT CONTAINER-->
+      <div id="content-container">
+
+        <!--Page content-->
+        <div id="page-content">
+          <ui-view></ui-view>
+        </div>
+        <!--END Page content-->
+
+      </div>
+      <!--END CONTENT CONTAINER-->
+
+
+      <!--MAIN NAVIGATION-->
+      <nav id="mainnav-container">
+        <div id="mainnav">
+          <!--Menu-->
+          <div id="mainnav-menu-wrap">
+            <div class="nano">
+              <div class="nano-content">
+                <ul id="mainnav-menu" class="list-group">
+
+                  <!--Category name-->
+                  <li class="list-header">Navigation</li>
+
+                  <!--Menu list item-->
+                  <li>
+                    <a ui-sref="sales" ui-sref-active="active">
+                      <i class="fa fa-money"></i>
+                      <span class="menu-title">Sales</span>
+                    </a>
+                  </li>
+
+                  <!--Menu list item-->
+                  <li>
+                    <a ui-sref="customers" ui-sref-active="active">
+                      <i class="fa fa-heart"></i>
+                      <span class="menu-title">Customers</span>
+                    </a>
+                  </li>
+
+                  <!--Menu list item-->
+                  <li>
+                    <a ui-sref="purchases" ui-sref-active="active">
+                      <i class="fa fa-usd"></i>
+                      <span class="menu-title">Purchases</span>
+                    </a>
+                  </li>
+
+                  <!--Menu list item-->
+                  <li>
+                    <a ui-sref="suppliers" ui-sref-active="active">
+                      <i class="fa fa-users"></i>
+                      <span class="menu-title">Suppliers</span>
+                    </a>
+                  </li>
+
+                  <!--Menu list item-->
+                  <li>
+                    <a ui-sref="products" ui-sref-active="active">
+                      <i class="fa fa-cubes"></i>
+                      <span class="menu-title">Products</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a ui-sref="warehouses" ui-sref-active="active">
+                      <i class="fa fa-database"></i>
+                      <span class="menu-title">Warehouses</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--End menu-->
+
+        </div>
+      </nav>
+      <!--END MAIN NAVIGATION-->
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+      <p class="pad-lft">&#0169; 2015 GrailERP</p>
+    </footer>
+    <!-- END FOOTER -->
+
+    <!-- SCROLL TOP BUTTON -->
+    <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+    <!-- END SCROLL TOP BUTTON -->
+
+  </div>
+</body>
+
+</html>

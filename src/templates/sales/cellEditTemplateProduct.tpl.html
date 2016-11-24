@@ -1,0 +1,10 @@
+<ui-select-wrap>
+    <ui-select ng-model="MODEL_COL_FIELD" theme="selectize" append-to-body="true" on-select="grid.appScope.onSelect($item, rowRenderIndex)">
+        <ui-select-match placeholder="Choose...">{{ COL_FIELD | productFilter : col.colDef }}</ui-select-match>
+        <ui-select-choices group-by="'base_product_name'"
+                repeat="item.id as item in (col.colDef.editDropdownOptionsArray | filter: $select.search | orderBy:'weight' | orderBy:grid.appScope.natural('base_product_name'))
+                            track by item.id">
+            <span>{{ item.Code }}</span>
+        </ui-select-choices>
+    </ui-select>
+</ui-select-wrap>

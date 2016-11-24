@@ -1,0 +1,57 @@
+<h1 class="page-header text-overflow ng-scope">Settings</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h4>Xero Integration</h4>
+                    <a class="btn btn-success" ng-click="import()">
+                        Connect to Xero
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h4>Xero Settings</h4>
+                    <a class="btn btn-success" ng-click="downloadAccounts()">
+                        Download Sales + Tax Codes
+
+                    </a>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="sales-account">Default Sales Account</label>
+                        <selectize id="sales-account" config="accountConfig" options='accounts'
+                                   ng-model="default_sales_account"
+                                   placeholder="Select a default sales account..."></selectize>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tax-rule-sale">Default Tax Rule - Sales</label>
+                        <selectize id="tax-rule-sale" config="taxConfig" options='tax_rates'
+                                   ng-model="default_tax_rule"
+                                   placeholder="Select a default tax rule - sale ..."></selectize>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

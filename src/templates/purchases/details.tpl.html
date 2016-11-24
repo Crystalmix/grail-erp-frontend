@@ -1,0 +1,79 @@
+<h1 class="page-header text-overflow ng-scope">Purchase details</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success pull-right" ng-click="save()"
+                            ng-disabled="details.$invalid || !isLineItems().length || !isLineItemsValid()">Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="customer">Supplier <span class="required-asterix">*</span></label>
+                        <selectize id="customer" config="supplierConfig" options='suppliers' ng-model="data.Contact"
+                                   placeholder="Select a supplier..." required=""></selectize>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="orderno">Document Number</label>
+                        <input disabled="disabled" type="text" class="form-control" id="docno"
+                               placeholder="Customer Order Number" ng-model="data.InvoiceNumber">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="date">Date <span class="required-asterix">*</span></label>
+                        <input name="date" class="form-control" id="date" ng-model="data.Date"
+                               data-date-format="dd-MM-yyyy"
+                               data-model-date-format="yyyy-MM-dd"
+                               date-type="string" placeholder="Date" data-autoclose="1" bs-datepicker required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="attn">Attn</label>
+                        <input type="text" class="form-control" id="attn" placeholder="Attention"
+                               ng-model="data.Attention">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="customer">Warehouse <span class="required-asterix">*</span></label>
+                        <selectize id="warehouse" config="warehouseConfig" options='warehouses'
+                                   ng-model="data.Warehouse" placeholder="Select a warehouse..."
+                                   required=""></selectize>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a id="demo-dt-addrow-btn" class="btn btn-primary" ng-click="addLineItem()">
+                    <i class="fa fa-plus"></i> Add a product
+                </a>
+            </div>
+            <br>
+
+            <div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav ui-grid-validate class="grid"></div>
+            <br>
+
+            <div>
+                <h3>Sub Total: ${{ getSubTotal() | number:2 }}</h3>
+
+                <h3>Tax: ${{ getTaxTotal() | number:2 }}</h3>
+
+                <h2>Total: ${{ getTotal() | number:2 }}</h2>
+            </div>
+        </form>
+    </div>
+</div>

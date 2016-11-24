@@ -1,0 +1,24 @@
+<h1 class="page-header text-overflow ng-scope">Warehouse details</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success pull-right" ng-click="save()"
+                            ng-disabled="details.$invalid">Save
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="sales_account">Name <span class="required-asterix">*</span></label>
+                        <input type="text" class="form-control" placeholder="Name" required
+                               ng-model="warehouse.name">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

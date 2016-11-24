@@ -1,0 +1,185 @@
+<h1 class="page-header text-overflow ng-scope">Customer details</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" ng-click="export()" ng-if="isNew">Export</button>
+                        <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="details.$invalid">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label>Name <span class="required-asterix">*</span></label>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" required
+                               ng-model="customer.Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <h4>Invoice Address</h4>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <label for="address1">Name</label>
+                                <input type="text" class="form-control" placeholder="Name"
+                                       ng-model="customer.LastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="address1">Address 1</label>
+                                <input type="text" class="form-control" placeholder="Address 1"
+                                       ng-model="customer.Addresses.AddressLine1">
+                            </div>
+                            <div class="form-group">
+                                <label for="address2">Address 2</label>
+                                <input type="text" class="form-control" placeholder="Address 2"
+                                       ng-model="customer.Addresses.AddressLine2">
+                            </div>
+                            <div class="form-group">
+                                <label for="address3">Address 3</label>
+                                <input type="text" class="form-control" placeholder="Address 3"
+                                       ng-model="customer.Addresses.AddressLine3">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" placeholder="Country"
+                                       ng-model="customer.Addresses.Country">
+                            </div>
+                            <div class="form-group">
+                                <label for="postcode">Post Code</label>
+                                <input type="text" class="form-control" placeholder="Postcode"
+                                       ng-model="customer.Addresses.PostalCode">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" class="form-control" placeholder="Contact"
+                               ng-model="customer.FirstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="Email"
+                               ng-model="customer.EmailAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="vendor">Vendor Number</label>
+                        <input type="text" class="form-control" placeholder="Vendor Number"
+                               ng-model="customer.VendorNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>Locations</h4>
+
+                <div class="col-md-4">
+                    <ul class="list-group bord-no">
+                        <li ng-repeat="location in customer.Locations | orderBy:'location.Name' track by $index"
+                            class="location list-group-item"
+                            ng-click="updateSelectedLocation(location)" ng-class="{'active':location.active}">
+                            {{location.Name}}
+                        </li>
+                    </ul>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-primary" data-toggle="dropdown" type="button" aria-expanded="true">
+                            Action
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="addLocation()">Add new location</a></li>
+                            <li><a href="#" ng-click="removeSelectedLocation()">Delete selected location</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div ng-if="customer.Locations.length == 1" class="checkbox copy-invoice form-group">
+                            <input class="magic-checkbox" type="checkbox" ng-model="isCopyInvoiceAddress"
+                                   ng-change="updateCopyInvoiceAddress(isCopyInvoiceAddress)">
+                            <label>Single Location - Copy Invoice Address</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name <span class="required-asterix">*</span></label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.Name" required>
+                        </div>
+                        <div class="form-group ">
+                            <label for="name">Warehouse <span class="required-asterix">*</span></label>
+
+                            <div class="btn-group bootstrap-select">
+                                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                        title="Javascript" aria-expanded="true">
+                                    <span class="filter-option pull-left">{{selectLocation.Warehouse.name}}</span>&nbsp;<span
+                                        class="bs-caret"><span class="caret"></span></span>
+                                </button>
+                                <div class="dropdown-menu open">
+                                    <ul class="dropdown-menu inner" role="menu">
+                                        <li data-original-index="0" ng-click="setWarehouseToLocation(null)">
+                                            <a tabindex="0" class="" style="" data-tokens="null">
+                                                <span class="text">-----</span>
+                                            </a></li>
+                                        <li data-original-index="0" class=""
+                                            ng-repeat="warehouse in warehouses  | orderBy:'warehouse.name'"
+                                            ng-click="setWarehouseToLocation(warehouse)">
+                                            <a tabindex="0" class="" style="" data-tokens="null">
+                                                <span class="text">{{warehouse.name}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address1">Address 1</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.AddressLine1">
+                        </div>
+                        <div class="form-group">
+                            <label for="address2">Address 2</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.AddressLine2">
+                        </div>
+                        <div class="form-group">
+                            <label for="address3">Address 3</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.AddressLine3">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-code">Post Code</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.PostCode">
+                        </div>
+                        <div class="form-group">
+                            <label for="store">Store Number</label>
+                            <input type="text" class="form-control"
+                                   ng-model="selectLocation.StoreNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="attention">Attention</label>
+                                <textarea type="text" class="form-control"
+                                          ng-model="selectLocation.Attention">
+                                </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="attention">Email</label>
+                            <input type="email" class="form-control"
+                                   ng-model="selectLocation.EmailAddress">
+                            </input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<h1 class="page-header text-overflow ng-scope">User profile</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-success" ng-click="save()"
+                                ng-disabled="details.$invalid">Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <label for="language">Language</label>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Language"
+                                   ng-model="user.profile.language">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label for="time_zone">Time Zone</label>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Time Zone"
+                                   ng-model="user.profile.time_zone">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label for="date_format">Date Format</label>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Date Format"
+                                   ng-model="user.profile.date_format">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

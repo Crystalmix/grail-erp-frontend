@@ -1,0 +1,106 @@
+<h1 class="page-header text-overflow ng-scope">Company information</h1>
+
+<div class="panel ng-scope">
+    <div class="panel-body">
+        <form name="details">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-success" ng-click="save()"
+                                ng-disabled="details.$invalid">Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Bank Account Number</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Bank Account Number">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Phone Number</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Phone Number"
+                               ng-model="org.data.Phones[0].PhoneNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Email</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email"
+                               ng-model="username" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Company name</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Company name"
+                               ng-model="org.data.Name" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Address</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Address"
+                               ng-model="address.AddressLine1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Suburb</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Suburb"
+                               ng-model="address.Country">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>City</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="City"
+                               ng-model="address.City">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Postcode</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Postcode"
+                               ng-model="address.PostalCode">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <h4>Tax Number</h4>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tax Number"
+                               ng-model="org.data.TaxNumber">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

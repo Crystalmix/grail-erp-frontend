@@ -1,0 +1,41 @@
+{
+  "name": "grail-erp",
+  "version": "0.0.1",
+  "description": "Grail ERP",
+  "main": "index.js",
+  "author": "<yurtaev.egor@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-grid": "^3.2.9",
+    "angular-ui-router": "^0.3.2",
+    "angular-ui-sortable": "^0.15.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "2.2.4",
+    "jquery-ui": "1.12.0",
+    "ng-dialog": "^0.6.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "11.1.0",
+    "eslint-plugin-flowtype-errors": "^1.5.0",
+    "eslint-plugin-import": "^2.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "flow-bin": "^0.36.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.24.1",
+    "resolve-url-loader": "^1.6.0",
+    "url-loader": "^0.5.7",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.11"
+  }
+}
