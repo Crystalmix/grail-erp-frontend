@@ -2,10 +2,10 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-module.exports = {
+const config = {
   context: path.join(__dirname, 'src'),
-  devtool: 'eval-source-map',
   entry: {
     main: './main.js',
     vendor: [
@@ -40,7 +40,7 @@ module.exports = {
         test: /\.(css)$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?sourceMap',
+          loader: 'css-loader',
         }),
       },
       {
@@ -56,8 +56,24 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
     new ExtractTextPlugin("styles.css"),
+    new webpack.DefinePlugin({
+      'process.env': {
+          'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      }
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new CopyWebpackPlugin([{ from: 'images', to: 'images' }])
   ],
   devServer: {
     contentBase: path.join(__dirname, 'src'),
   },
 }
+
+if (process.env.NODE_ENV === 'production') {
+  config.devtool = 'source-map'
+  // config.plugins.push(new webpack.optimize.UglifyJsPlugin())
+} else {
+  config.devtool = 'eval-source-map'
+}
+
+module.exports = config
