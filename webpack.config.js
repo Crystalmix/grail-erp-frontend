@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   context: path.join(__dirname, 'src'),
@@ -36,7 +37,10 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        use: ['style-loader', 'css-loader'],
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?sourceMap',
+        }),
       },
       {
         test: /\.json$/,
@@ -50,6 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
+    new ExtractTextPlugin("styles.css"),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'src'),
