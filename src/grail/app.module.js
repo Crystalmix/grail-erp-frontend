@@ -19,7 +19,7 @@ const app = angular.module('grail', [
   'ui.grid.edit',
   'ui.grid.selection',
   'ui.sortable',
-  'ngDialog'
+  'ngDialog',
 ])
 
 app.config(routing)
