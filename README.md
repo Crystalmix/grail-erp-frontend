@@ -13,11 +13,11 @@ $ cd grail-erp-frontend
 # Install requirements
 $ yarn
 # Build
-$ webpack
+$ npm run build
 # Build production
-$ webpack -p
+$ npm run build:production
 # Run dev server
-$ webpack dev-server
+$ npm run serve
 # Open http://127.0.0.1:8080/
 ```
 

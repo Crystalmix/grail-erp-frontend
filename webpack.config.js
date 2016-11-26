@@ -78,7 +78,15 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = 'source-map'
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin())
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      angular: true,
+      warnings: false,
+    },
+    mangle: false,
+    sourceMap: true,
+    sourceMapIncludeSources: true,
+  }))
 } else {
   config.devtool = 'eval-source-map'
 }
