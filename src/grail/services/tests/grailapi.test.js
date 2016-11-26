@@ -2,18 +2,24 @@
 
 import { assert } from 'chai'
 import angular from 'angular'
+import 'angular-mocks'
 
 import api from '../grailapi'
-import settings from '../../settings'
+// import settings from '../../settings'
 import auth_status from '../auth_status'
 import xero from '../../constants/xero'
 
 const injector = angular.injector(['ng'])
-const $http = injector.get('$http')
+// const $http = injector.get('$http')
 const $exceptionHandler = injector.get('$exceptionHandler')
-const $state = {}
 const $rootScope = injector.get('$rootScope')
+const $state = {}
 const _auth_status = auth_status($rootScope)
+
+const settings = {
+  API_SERVER: '',
+  API_URL: '',
+}
 
 const api_functions = [
   'request',
@@ -66,14 +72,40 @@ const api_functions = [
 ]
 
 describe('Grail ERP API Client', () => {
-  const client = api($http, settings, _auth_status, $state, $exceptionHandler, xero)
+  let client
+  let $httpBackend
 
-  for (const func_name of api_functions) {
-    it(`API: ${func_name}`, () => {
-      assert.typeOf(client[func_name], 'function')
-      assert(client[func_name]())
+  beforeEach(angular.mock.inject(($injector) => {
+    $httpBackend = $injector.get('$httpBackend')
+    const $http = $injector.get('$http')
+    $httpBackend.when('GET', /.*/).respond()
+    client = api($http, settings, _auth_status, $state, $exceptionHandler, xero)
+  }))
+
+  afterEach(() => {
+    $httpBackend.verifyNoOutstandingExpectation()
+    $httpBackend.verifyNoOutstandingRequest()
+    client = null
+  })
+
+  // for (const func_name of api_functions) {
+  //   it(`API: ${func_name}`, () => {
+  //     assert.typeOf(client[func_name], 'function')
+  //     assert(client[func_name]())
+  //   })
+  // }
+
+  it('test request', (done) => {
+    const url = '/test'
+    const url_expected = '/api/test'
+    client.request('get', url)
+    .then((resp) => {
+      assert.equal(resp.config.method, 'GET')
+      assert.equal(resp.config.url, url_expected)
+      done()
     })
-  }
+    $httpBackend.flush()
+  })
 
   it("It's object", () => {
     assert.typeOf(client, 'object')

@@ -65,6 +65,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-mocks@^1.5.8:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.5.9.tgz#5d6d6b37873d6c59e32e195f5de161f4a3f2f7e8"
+
 angular-ui-grid@^3.2.9:
   version "3.2.9"
   resolved "https://registry.yarnpkg.com/angular-ui-grid/-/angular-ui-grid-3.2.9.tgz#f00f7a9c0daa287ad5c06d28b1f4ccfa1ae53880"

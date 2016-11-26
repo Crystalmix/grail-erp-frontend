@@ -23,6 +23,7 @@
     "ng-dialog": "^0.6.4"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.8",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-istanbul-loader": "^0.1.0",
