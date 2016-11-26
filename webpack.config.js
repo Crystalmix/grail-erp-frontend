@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
+const ngAnnotatePlugin = require('ng-annotate-webpack-plugin')
 
 const config = {
   context: path.join(__dirname, 'src'),
@@ -23,6 +25,7 @@ const config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
+    chunkFilename: "[chunkhash].[id].chunk.js",
     sourceMapFilename: '[name].[chunkhash].map',
   },
   module: {
@@ -33,6 +36,9 @@ const config = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
           },
         ],
       },
@@ -52,6 +58,7 @@ const config = {
     ],
   },
   plugins: [
+    new WebpackMd5Hash(),
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
@@ -71,7 +78,17 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = 'source-map'
-  // config.plugins.push(new webpack.optimize.UglifyJsPlugin())
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+    compress: {
+         warnings: false
+    },
+    mangle: {
+        except: ['$super', '$', 'exports', 'require', 'angular'],
+        keep_fnames: true //it works
+    },
+  }))
+  config.plugins.push(new ngAnnotatePlugin({add: true}))
 } else {
   config.devtool = 'eval-source-map'
 }
