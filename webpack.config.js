@@ -31,11 +31,25 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.test.js$/,
+        include: /src/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.js$/,
+        include: /src/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: 'babel-istanbul-loader',
             options: {
               cacheDirectory: true,
             },
