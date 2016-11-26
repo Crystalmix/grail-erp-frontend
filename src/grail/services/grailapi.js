@@ -193,10 +193,6 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
     return this.request('POST', '/invoices/', data)
   }
 
-  api.getTaxRates = function () {
-    return this.request('GET', '/tax_rates/')
-  }
-
   // Accounts
   api.getAccounts = function () {
     return this.request('GET', '/accounts/')
