@@ -22,16 +22,16 @@ import './grail/app.module'
 
 // angular.module('grail', [app])
 
-const foo = async (x: string, flag: bool): void => {
+const foo = async (x: string, flag: bool): Promise<void> => {
   console.log(`=> Start: ${x}`, flag)
 }
 
-if (process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   console.log('=> NODE_ENV', process.env.NODE_ENV)
   foo('yo', false)
 }
 
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   console.log('=> NODE_ENV', process.env.NODE_ENV)
   foo('yo', true)
 }

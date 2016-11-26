@@ -4,7 +4,7 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackMd5Hash = require('webpack-md5-hash')
-const ngAnnotatePlugin = require('ng-annotate-webpack-plugin')
+
 
 const config = {
   context: path.join(__dirname, 'src'),
@@ -25,7 +25,7 @@ const config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    chunkFilename: "[chunkhash].[id].chunk.js",
+    chunkFilename: '[chunkhash].[id].chunk.js',
     sourceMapFilename: '[name].[chunkhash].map',
   },
   module: {
@@ -37,8 +37,8 @@ const config = {
           {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: true
-            }
+              cacheDirectory: true,
+            },
           },
         ],
       },
@@ -62,14 +62,14 @@ const config = {
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
       'process.env': {
-          'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      }
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new CopyWebpackPlugin([{ from: 'images', to: 'images' }])
+    new CopyWebpackPlugin([{ from: 'images', to: 'images' }]),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'src'),
@@ -78,17 +78,7 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = 'source-map'
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true,
-    compress: {
-         warnings: false
-    },
-    mangle: {
-        except: ['$super', '$', 'exports', 'require', 'angular'],
-        keep_fnames: true //it works
-    },
-  }))
-  config.plugins.push(new ngAnnotatePlugin({add: true}))
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin())
 } else {
   config.devtool = 'eval-source-map'
 }
