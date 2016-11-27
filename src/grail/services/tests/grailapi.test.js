@@ -129,3 +129,30 @@ describe('Grail ERP API Client', () => {
     })
   }
 })
+
+describe('Test: Xero Import Url', () => {
+  const fake_auth_status = {
+    getToken: () => ('fake_token'),
+  }
+  const $http = null
+  const client = api($http, settings, fake_auth_status, $state, $exceptionHandler, xero)
+
+  it('getOrganizartionImportXeroUrl', () => {
+    assert.equal(client.getOrganizartionImportXeroUrl(), '/xero/organizations/organization/import/?token=fake_token')
+  })
+  it('getTaxRatesAndAccountsImportXeroUrl', () => {
+    assert.equal(client.getTaxRatesAndAccountsImportXeroUrl(), '/xero/others/tax_rates_accounts/import/?token=fake_token')
+  })
+  it('getCustomerExportXeroUrl', () => {
+    assert.equal(client.getCustomerExportXeroUrl(1), '/xero/contacts/contacts/export/1/?token=fake_token')
+  })
+  it('getContactsImportXeroUrl', () => {
+    assert.equal(client.getContactsImportXeroUrl(), '/xero/contacts/contacts/import/?token=fake_token')
+  })
+  it('getContactsExportXeroUrl', () => {
+    assert.equal(client.getContactsExportXeroUrl(), '/xero/contacts/contacts/export/?token=fake_token')
+  })
+  it('getInvoiceExportXeroUrl', () => {
+    assert.equal(client.getInvoiceExportXeroUrl(1), '/xero/invoices/invoices/export/1/?token=fake_token')
+  })
+})
