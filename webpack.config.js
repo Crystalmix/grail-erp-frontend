@@ -4,12 +4,12 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackMd5Hash = require('webpack-md5-hash')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 
 const config = {
   context: path.join(__dirname, 'src'),
   entry: {
-    main: './main.js',
     vendor: [
       'jquery',
       'jquery-ui',
@@ -20,7 +20,9 @@ const config = {
       'angular-ui-grid',
       'angular-ui-sortable',
       'ng-dialog',
+      'babel-polyfill',
     ],
+    main: './main.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -31,25 +33,12 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.test.js$/,
-        include: /src/,
-        exclude: /(node_modules|bower_components)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.js$/,
         include: /src/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
-            loader: 'babel-istanbul-loader',
+            loader: 'babel-loader',
             options: {
               cacheDirectory: true,
             },
@@ -74,7 +63,7 @@ const config = {
   plugins: [
     new WebpackMd5Hash(),
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: 2 }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
@@ -103,6 +92,10 @@ if (process.env.NODE_ENV === 'production') {
   }))
 } else {
   config.devtool = 'eval-source-map'
+}
+
+if (process.env.NODE_ENV === 'profile') {
+  config.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = config
