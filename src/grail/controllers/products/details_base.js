@@ -1,0 +1,61 @@
+/* @flow */
+/* eslint no-param-reassign: 0 */
+
+import _ from 'underscore'
+import angular from 'angular'
+
+export default ($scope, api, $state, $controller, profile_settings, settings_constants) => {
+  const prepareJson = () => {
+    const json = _.clone($scope.product)
+    json.items = $scope.productItems
+    return angular.toJson(json)
+  }
+
+  const cleanProductItems = () => {
+    $scope.productItems = _.filter($scope.productItems, item => item.Code)
+  }
+
+
+  const addWeightToProductItems = () => {
+    _.each($scope.productItems, (val, key) => { val.weight = key + 1 })
+  }
+
+
+  $controller('BaseDetails', { $scope })
+
+  $scope.product = {}
+
+  $scope.default_sales_account = profile_settings.getXeroSettings(settings_constants.default.sales_account)
+  $scope.default_tax_rule = profile_settings.getXeroSettings(settings_constants.default.tax_rule)
+
+  $scope.accountConfig = {
+    create: false,
+    labelField: 'Name',
+    maxItems: 1,
+    persist: false,
+    valueField: 'id',
+    searchField: ['Name'],
+    onChange(val) { $scope.product.Account = parseInt(val, 10) },
+  }
+
+  $scope.taxConfig = {
+    create: false,
+    labelField: 'name',
+    maxItems: 1,
+    persist: false,
+    valueField: 'id',
+    searchField: ['name'],
+    onChange(val) { $scope.product.TaxRate = parseInt(val, 10) },
+  }
+
+  $scope.save = () => {
+    if ($scope.productItems) { cleanProductItems() }
+    $scope.product.Name = $scope.product.Code
+    if ($scope.product.id) {
+      api.updateProduct($scope.product.id, prepareJson()).then(() => $state.go('products'))
+    } else {
+      if ($scope.productItems) { addWeightToProductItems() }
+      api.addProduct(prepareJson()).then(() => $state.go('products'))
+    }
+  }
+}

@@ -10,6 +10,9 @@ import customer_detail_template from '../templates/customers/details.tpl.html'
 import suppliers_template from '../templates/suppliers/list.tpl.html'
 import supplier_detail_template from '../templates/suppliers/details.tpl.html'
 
+import products_template from '../templates/products/list.tpl.html'
+import product_details_template from '../templates/products/details.tpl.html'
+
 
 export default function ($stateProvider) {
   $stateProvider
@@ -115,19 +118,19 @@ export default function ($stateProvider) {
   .state('products', {
     url: '/products',
     controller: 'Products',
-    templateUrl: 'templates/products/list.html',
+    template: products_template,
     requireLogin: true,
   })
   .state('product_add', {
     url: '/products/add',
     controller: 'ProductAdd',
-    templateUrl: 'templates/products/details.html',
+    template: product_details_template,
     requireLogin: true,
   })
   .state('product_edit', {
     url: '/products/:id',
     controller: 'ProductEdit',
-    templateUrl: 'templates/products/details.html',
+    template: product_details_template,
     requireLogin: true,
   })
 

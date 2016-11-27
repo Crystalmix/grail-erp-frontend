@@ -19,10 +19,18 @@ const config = {
       'angular-ui-router',
       'angular-ui-grid',
       'angular-ui-sortable',
+      'selectize',
+      'angular-selectize',
       'ng-dialog',
       'babel-polyfill',
     ],
     main: './main.js',
+  },
+  resolve: {
+    alias: {
+      'jquery-ui': 'jquery-ui-bundle/jquery-ui.js',
+      'angular-selectize': 'angular-selectize2/dist/angular-selectize.js',
+    },
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -65,6 +73,7 @@ const config = {
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: 2 }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
+    new webpack.ProvidePlugin({ Selectize: 'selectize', 'window.Selectize': 'selectize' }),
     new ExtractTextPlugin('styles.css'),
     new webpack.DefinePlugin({
       'process.env': {
