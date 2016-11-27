@@ -14,7 +14,7 @@ const config = {
       'jquery',
       'jquery-ui',
       'bootstrap/dist/js/bootstrap',
-      'lodash',
+      'underscore',
       'angular',
       'angular-ui-router',
       'angular-ui-grid',
