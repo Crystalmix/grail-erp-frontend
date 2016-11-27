@@ -2,6 +2,8 @@ import './controllers/accounts/login'
 import login_template from '../templates/accounts/login.tpl.html'
 import customers_template from '../templates/customers/list.tpl.html'
 import customer_detail_template from '../templates/customers/details.tpl.html'
+import suppliers_template from '../templates/suppliers/list.tpl.html'
+import supplier_detail_template from '../templates/suppliers/details.tpl.html'
 
 export default function ($stateProvider) {
   $stateProvider
@@ -67,19 +69,19 @@ export default function ($stateProvider) {
   .state('suppliers', {
     url: '/suppliers',
     controller: 'Suppliers',
-    templateUrl: 'templates/suppliers/list.html',
+    template: suppliers_template,
     requireLogin: true,
   })
   .state('supplier_add', {
     url: '/suppliers/add',
     controller: 'SupplierDetails',
-    templateUrl: 'templates/suppliers/details.html',
+    template: supplier_detail_template,
     requireLogin: true,
   })
   .state('supplier_edit', {
     url: '/suppliers/:id',
     controller: 'SupplierDetails',
-    templateUrl: 'templates/suppliers/details.html',
+    template: supplier_detail_template,
     requireLogin: true,
   })
 
