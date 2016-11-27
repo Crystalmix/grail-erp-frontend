@@ -3100,6 +3100,10 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
+"jsgrid@https://github.com/tabalinas/jsgrid.git#1.5.2":
+  version "1.5.2"
+  resolved "https://github.com/tabalinas/jsgrid.git#66bb128dc83a9a244a9c870bb2046e1f4a2ce355"
+
 json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"

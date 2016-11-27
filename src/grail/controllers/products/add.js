@@ -3,6 +3,8 @@
 
 import _ from 'underscore'
 
+import identical_options_template from '../../../templates/products/identical_options.tpl.html'
+
 export default ($scope, $controller, product_generator, ngDialog, api) => {
   $controller('ProductDetailsBase', { $scope })
 
@@ -64,7 +66,7 @@ export default ($scope, $controller, product_generator, ngDialog, api) => {
 
   $scope.generate = () => {
     if (areIdenticalOptions()) {
-      ngDialog.open({ template: 'templates/products/identical_options.html' })
+      ngDialog.open({ template: identical_options_template, plain: true })
       return
     }
     if (!$scope.product || !$scope.product.Code) {

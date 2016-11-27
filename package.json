@@ -23,6 +23,7 @@
     "jquery": "2.2.4",
     "jquery-ui": "1.12.0",
     "jquery-ui-bundle": "^1.11.4",
+    "jsgrid": "https://github.com/tabalinas/jsgrid.git#1.5.2",
     "ng-dialog": "^0.6.4",
     "selectize": "https://github.com/brianreavis/selectize.js.git#master",
     "underscore": "^1.8.3"

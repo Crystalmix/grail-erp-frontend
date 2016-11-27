@@ -17,6 +17,11 @@ import 'angular-ui-grid/ui-grid.css'
 
 import angular from 'angular'
 
+import 'jsgrid/dist/jsgrid'
+import 'jsgrid/dist/jsgrid.css'
+import 'jsgrid/dist/jsgrid-theme.css'
+import './jsGrid'
+
 import routing from './app.config'
 import settings from './settings'
 
@@ -55,6 +60,7 @@ import ProductEdit from './controllers/products/edit'
 
 
 const app = angular.module('grail', [
+  'ngjsgrid',
   'ui.router',
   'ui.grid',
   'ui.grid.edit',

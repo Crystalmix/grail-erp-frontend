@@ -23,6 +23,7 @@ const config = {
       'angular-selectize',
       'ng-dialog',
       'babel-polyfill',
+      'jsgrid/dist/jsgrid',
     ],
     main: './main.js',
   },
