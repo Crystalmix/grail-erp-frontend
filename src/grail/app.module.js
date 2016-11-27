@@ -24,6 +24,7 @@ import Login from './controllers/accounts/login'
 import Customers from './controllers/contacts/customers/customers'
 import CustomerDetailsBase from './controllers/contacts/customers/customer_details_base'
 import CustomerAdd from './controllers/contacts/customers/customer_add'
+import CustomerEdit from './controllers/contacts/customers/customer_edit'
 
 
 const app = angular.module('grail', [
@@ -56,5 +57,6 @@ app.controller('Login', Login)
 app.controller('CustomerDetailsBase', CustomerDetailsBase)
 app.controller('Customers', Customers)
 app.controller('CustomerAdd', CustomerAdd)
+app.controller('CustomerEdit', CustomerEdit)
 
 export default app

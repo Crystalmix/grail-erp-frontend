@@ -59,7 +59,7 @@ export default function ($stateProvider) {
   .state('customer_edit', {
     url: '/customers/:id',
     controller: 'CustomerEdit',
-    templateUrl: 'templates/customers/details.html',
+    template: customer_detail_template,
     requireLogin: true,
   })
 
