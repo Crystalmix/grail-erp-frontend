@@ -11,6 +11,7 @@ import routing from './app.config'
 import settings from './settings'
 
 import xero from './constants/xero'
+import settings_constants from './constants/settings_constants'
 import api from './services/grailapi'
 import profile_settings from './services/profile_settings'
 import auth_status from './services/auth_status'
@@ -21,6 +22,11 @@ import uuidFactory from './services/uuid'
 import Init from './controllers/init_controller'
 import BaseDetails from './controllers/core/base_details'
 import Login from './controllers/accounts/login'
+import Signup from './controllers/accounts/signup'
+import Reset from './controllers/accounts/reset'
+import UserProfile from './controllers/accounts/user_profile'
+import CompanyInformation from './controllers/accounts/company_information'
+import Settings from './controllers/accounts/settings'
 
 import Customers from './controllers/contacts/customers/customers'
 import CustomerDetailsBase from './controllers/contacts/customers/customer_details_base'
@@ -47,6 +53,7 @@ app.config(routing)
 
 app.constant('configs', settings)
 app.constant('xero', xero)
+app.constant('settings_constants', settings_constants)
 
 app.factory('api', api)
 app.factory('auth_status', auth_status)
@@ -57,6 +64,11 @@ app.factory('uuidFactory', uuidFactory)
 app.controller('Init', Init)
 app.controller('BaseDetails', BaseDetails)
 app.controller('Login', Login)
+app.controller('Signup', Signup)
+app.controller('Reset', Reset)
+app.controller('UserProfile', UserProfile)
+app.controller('CompanyInformation', CompanyInformation)
+app.controller('Settings', Settings)
 
 app.controller('CustomerDetailsBase', CustomerDetailsBase)
 app.controller('Customers', Customers)

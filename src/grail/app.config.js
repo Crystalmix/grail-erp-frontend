@@ -1,9 +1,15 @@
-import './controllers/accounts/login'
 import login_template from '../templates/accounts/login.tpl.html'
+import signup_template from '../templates/accounts/signup.tpl.html'
+import reset_template from '../templates/accounts/reset.tpl.html'
+import profile_template from '../templates/accounts/profile.tpl.html'
+import company_template from '../templates/accounts/company.tpl.html'
+import settings_template from '../templates/accounts/settings.tpl.html'
+
 import customers_template from '../templates/customers/list.tpl.html'
 import customer_detail_template from '../templates/customers/details.tpl.html'
 import suppliers_template from '../templates/suppliers/list.tpl.html'
 import supplier_detail_template from '../templates/suppliers/details.tpl.html'
+
 
 export default function ($stateProvider) {
   $stateProvider
@@ -17,31 +23,31 @@ export default function ($stateProvider) {
   .state('sign_up', {
     url: '/sign_up',
     controller: 'Signup',
-    templateUrl: 'templates/accounts/signup.html',
+    template: signup_template,
     requireLogin: false,
   })
   .state('reset', {
     url: '/reset',
     controller: 'Reset',
-    templateUrl: 'templates/accounts/reset.html',
+    template: reset_template,
     requireLogin: false,
   })
   .state('profile', {
     url: '/profile',
     controller: 'UserProfile',
-    templateUrl: 'templates/accounts/profile.html',
+    template: profile_template,
     requireLogin: true,
   })
   .state('company', {
     url: '/company',
     controller: 'CompanyInformation',
-    templateUrl: 'templates/accounts/company.html',
+    template: company_template,
     requireLogin: true,
   })
   .state('settings', {
     url: '/settings',
     controller: 'Settings',
-    templateUrl: 'templates/accounts/settings.html',
+    template: settings_template,
     requireLogin: true,
   })
 
