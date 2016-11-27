@@ -90,7 +90,6 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   api.getInvoiceExportXeroUrl = (id: number) => `${configs.API_SERVER}/xero/invoices/invoices/export/${id}/?token=${auth_status.getToken()}`
 
   // Sales
-  api.getInvoiceExportXeroUrl = id => `${configs.API_SERVER}/xero/invoices/invoices/export/${id}/?token=${auth_status.getToken()}`
   api.getSaleLastDocId = () => api.request('GET', '/invoices/last_doc_id/')
   api.getSales = () => api.request('GET', `/invoices/?Type=${xero.invoice.sale_type}`)
   api.getSale = (id: number) => api.request('GET', `/invoices/${id}/`)

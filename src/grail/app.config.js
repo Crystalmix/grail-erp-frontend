@@ -1,5 +1,6 @@
 import './controllers/accounts/login'
 import login_template from '../templates/accounts/login.tpl.html'
+import customers_template from '../templates/customers/list.tpl.html'
 
 export default function ($stateProvider) {
   $stateProvider
@@ -45,7 +46,8 @@ export default function ($stateProvider) {
   .state('customers', {
     url: '/customers',
     controller: 'Customers',
-    templateUrl: 'templates/customers/list.html',
+    template: customers_template,
+    // templateUrl: 'templates/customers/list.html',
     requireLogin: true,
   })
   .state('customer_add', {
