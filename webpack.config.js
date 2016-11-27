@@ -22,15 +22,17 @@ const config = {
       'selectize',
       'angular-selectize',
       'ng-dialog',
-      'babel-polyfill',
       'jsgrid/dist/jsgrid',
     ],
     main: './main.js',
   },
   resolve: {
     alias: {
-      'jquery-ui': 'jquery-ui-bundle/jquery-ui.js',
+      'angular-ui-grid$': 'angular-ui-grid/ui-grid.min.js',
+      jquery$: 'jquery/dist/jquery.min.js',
+      'jquery-ui': 'jquery-ui-bundle/jquery-ui.min.js',
       'angular-selectize': 'angular-selectize2/dist/angular-selectize.js',
+      'angular-ui-router': 'angular-ui-router/release/angular-ui-router.min.js',
     },
   },
   output: {

@@ -1,9 +1,5 @@
 /* @flow */
 
-import 'babel-polyfill'
-
-// import angular from 'angular'
-
 // Global vendor
 import 'jquery'
 import 'jquery-ui'

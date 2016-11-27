@@ -13,6 +13,7 @@ export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q)
   $scope.is_new = false
   $scope.warehouses = []
   $scope.showInactive = true
+  $scope.productItems = []
 
   $scope.toggleFiltering = () => {
     $scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering
