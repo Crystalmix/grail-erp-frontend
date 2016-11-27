@@ -1,25 +1,21 @@
 export default $rootScope => ({
-  setToken(token) {
+  setToken: (token) => {
     $rootScope.$emit('update_token', token)
-    return localStorage.setItem('token', token)
+    localStorage.setItem('token', token)
   },
 
-  getToken() {
-    return localStorage.getItem('token')
-  },
+  getToken: () => localStorage.getItem('token'),
 
-  setUser(username) {
+  setUser: (username) => {
     $rootScope.$emit('update_user', username)
-    return localStorage.setItem('user', username)
+    localStorage.setItem('user', username)
   },
 
-  getUser() {
-    return localStorage.getItem('user')
-  },
+  getUser: () => localStorage.getItem('user'),
 
-  clear() {
+  clear: () => {
     $rootScope.$emit('update_user', null)
     $rootScope.$emit('update_token', null)
-    return localStorage.clear()
+    localStorage.clear()
   },
 })

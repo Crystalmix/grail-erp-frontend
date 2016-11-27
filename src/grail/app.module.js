@@ -18,6 +18,7 @@ import login_require from './services/login_require'
 import popup from './services/popup'
 import uuidFactory from './services/uuid'
 
+import Init from './controllers/init_controller'
 import BaseDetails from './controllers/core/base_details'
 import Login from './controllers/accounts/login'
 
@@ -53,6 +54,7 @@ app.factory('profile_settings', profile_settings)
 app.factory('popup', popup)
 app.factory('uuidFactory', uuidFactory)
 
+app.controller('Init', Init)
 app.controller('BaseDetails', BaseDetails)
 app.controller('Login', Login)
 
