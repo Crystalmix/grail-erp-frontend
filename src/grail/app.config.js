@@ -13,6 +13,8 @@ import supplier_detail_template from '../templates/suppliers/details.tpl.html'
 import products_template from '../templates/products/list.tpl.html'
 import product_details_template from '../templates/products/details.tpl.html'
 
+import warehouses_template from '../templates/warehouses/list.tpl.html'
+
 
 export default function ($stateProvider) {
   $stateProvider
@@ -98,7 +100,7 @@ export default function ($stateProvider) {
   .state('warehouses', {
     url: '/warehouses',
     controller: 'Warehouses',
-    templateUrl: 'templates/warehouses/list.html',
+    templateUrl: warehouses_template,
     requireLogin: true,
   })
   .state('warehouse_add', {
