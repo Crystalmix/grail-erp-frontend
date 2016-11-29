@@ -4,6 +4,8 @@ import 'jquery-ui'
 import 'angular-ui-router'
 import 'angular-ui-grid'
 import 'angular-ui-sortable'
+import 'angular-strap/dist/angular-strap'
+import 'angular-strap/dist/angular-strap.tpl'
 
 // angular-ui-select
 import 'ui-select'
@@ -87,6 +89,7 @@ const app = angular.module('grail', [
   'ui.select',
   'ngDialog',
   'selectize',
+  'mgcrea.ngStrap',
 ])
 
 app.run(login_require)

@@ -19,6 +19,8 @@ const config = {
       'angular-ui-router',
       'angular-ui-grid',
       'angular-ui-sortable',
+      'angular-strap/dist/angular-strap',
+      'angular-strap/dist/angular-strap.tpl',
       'ui-select',
       'pdfmake/build/pdfmake',
       'pdfmake/build/vfs_fonts',
