@@ -59,6 +59,7 @@ import EditQuantity from './controllers/products/edit_quantity'
 import ProductEdit from './controllers/products/edit'
 
 import Warehouses from './controllers/warehouses/list'
+import WarehouseDetails from './controllers/warehouses/details'
 
 
 const app = angular.module('grail', [
@@ -113,5 +114,6 @@ app.controller('ProductAdd', ProductAdd)
 app.controller('ProductEdit', ProductEdit)
 
 app.controller('Warehouses', Warehouses)
+app.controller('WarehouseDetails', WarehouseDetails)
 
 export default app

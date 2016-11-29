@@ -14,6 +14,7 @@ import products_template from '../templates/products/list.tpl.html'
 import product_details_template from '../templates/products/details.tpl.html'
 
 import warehouses_template from '../templates/warehouses/list.tpl.html'
+import warehouses_details_template from '../templates/warehouses/details.tpl.html'
 
 
 export default function ($stateProvider) {
@@ -100,19 +101,19 @@ export default function ($stateProvider) {
   .state('warehouses', {
     url: '/warehouses',
     controller: 'Warehouses',
-    templateUrl: warehouses_template,
+    template: warehouses_template,
     requireLogin: true,
   })
   .state('warehouse_add', {
     url: '/warehouses/add',
     controller: 'WarehouseDetails',
-    templateUrl: 'templates/warehouses/details.html',
+    template: warehouses_details_template,
     requireLogin: true,
   })
   .state('warehouse_edit', {
     url: '/warehouses/:id',
     controller: 'WarehouseDetails',
-    templateUrl: 'templates/warehouses/details.html',
+    template: warehouses_details_template,
     requireLogin: true,
   })
 
