@@ -15,6 +15,8 @@ import product_details_template from '../templates/products/details.tpl.html'
 
 import warehouses_template from '../templates/warehouses/list.tpl.html'
 
+import sales_template from '../templates/sales/list.tpl.html'
+
 
 export default function ($stateProvider) {
   $stateProvider
@@ -160,7 +162,7 @@ export default function ($stateProvider) {
   .state('sales', {
     url: '/sales',
     controller: 'Sales',
-    templateUrl: 'templates/sales/list.html',
+    template: sales_template,
     requireLogin: true,
   })
   .state('sale_add', {
