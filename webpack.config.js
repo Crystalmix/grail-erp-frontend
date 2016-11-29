@@ -19,6 +19,9 @@ const config = {
       'angular-ui-router',
       'angular-ui-grid',
       'angular-ui-sortable',
+      'ui-select',
+      'pdfmake/build/pdfmake',
+      'pdfmake/build/vfs_fonts',
       'selectize',
       'angular-selectize',
       'ng-dialog',
@@ -103,7 +106,8 @@ if (process.env.NODE_ENV === 'production') {
     sourceMapIncludeSources: true,
   }))
 } else {
-  config.devtool = 'eval-source-map'
+  // config.devtool = 'eval-source-map'
+  config.devtool = 'eval'
 }
 
 if (process.env.NODE_ENV === 'profile') {

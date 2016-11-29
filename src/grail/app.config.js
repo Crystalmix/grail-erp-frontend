@@ -16,6 +16,7 @@ import product_details_template from '../templates/products/details.tpl.html'
 import warehouses_template from '../templates/warehouses/list.tpl.html'
 
 import sales_template from '../templates/sales/list.tpl.html'
+import sale_detail_template from '../templates/sales/details.tpl.html'
 
 
 export default function ($stateProvider) {
@@ -168,13 +169,13 @@ export default function ($stateProvider) {
   .state('sale_add', {
     url: '/sales/add',
     controller: 'SaleDetails',
-    templateUrl: 'templates/sales/details.html',
+    template: sale_detail_template,
     requireLogin: true,
   })
   .state('sale_edit', {
     url: '/sales/:id',
     controller: 'SaleDetails',
-    templateUrl: 'templates/sales/details.html',
+    template: sale_detail_template,
     requireLogin: true,
   })
 }

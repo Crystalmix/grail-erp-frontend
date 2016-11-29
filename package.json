@@ -25,7 +25,9 @@
     "jquery-ui-bundle": "^1.11.4",
     "jsgrid": "https://github.com/tabalinas/jsgrid.git#1.5.2",
     "ng-dialog": "^0.6.4",
+    "pdfmake": "https://github.com/bpampuch/pdfmake.git#0.1.20",
     "selectize": "https://github.com/brianreavis/selectize.js.git#master",
+    "ui-select": "https://github.com/angular-ui/ui-select.git#v0.19.6",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

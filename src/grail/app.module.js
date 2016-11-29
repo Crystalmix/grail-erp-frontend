@@ -5,6 +5,11 @@ import 'angular-ui-router'
 import 'angular-ui-grid'
 import 'angular-ui-sortable'
 
+// angular-ui-select
+import 'ui-select'
+import 'ui-select/dist/select.css'
+
+
 import 'selectize'
 import 'selectize/dist/css/selectize.default.css'
 import 'angular-selectize'
@@ -35,6 +40,8 @@ import popup from './services/popup'
 import uuidFactory from './services/uuid'
 import product_generator from './services/product_generator'
 import array_combinations from './services/array_combinations'
+import naturalService from './services/naturalOrder'
+import pdfmake from './services/pdfmaker'
 
 import Init from './controllers/init_controller'
 import BaseDetails from './controllers/core/base_details'
@@ -61,6 +68,10 @@ import ProductEdit from './controllers/products/edit'
 import Warehouses from './controllers/warehouses/list'
 
 import Sales from './controllers/sales/sales'
+import SaleDetails from './controllers/sales/sale_detail'
+import createPDF from './controllers/sales/create_pdf'
+
+import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/sales/utils'
 
 
 const app = angular.module('grail', [
@@ -73,6 +84,7 @@ const app = angular.module('grail', [
   'ui.grid.validate',
   'ui.grid.autoResize',
   'ui.sortable',
+  'ui.select',
   'ngDialog',
   'selectize',
 ])
@@ -84,6 +96,11 @@ app.constant('configs', settings)
 app.constant('xero', xero)
 app.constant('settings_constants', settings_constants)
 
+app.filter('productFilter', productFilter)
+app.filter('taxRateFilter', taxRateFilter)
+
+app.directive('uiSelectWrap', uiSelectWrap)
+
 app.factory('api', api)
 app.factory('auth_status', auth_status)
 app.factory('profile_settings', profile_settings)
@@ -91,6 +108,8 @@ app.factory('popup', popup)
 app.factory('uuidFactory', uuidFactory)
 app.factory('product_generator', product_generator)
 app.factory('combine', array_combinations)
+app.factory('naturalService', naturalService)
+app.factory('pdfmake', pdfmake)
 
 app.controller('Init', Init)
 app.controller('BaseDetails', BaseDetails)
@@ -117,5 +136,7 @@ app.controller('ProductEdit', ProductEdit)
 app.controller('Warehouses', Warehouses)
 
 app.controller('Sales', Sales)
+app.controller('SaleDetails', SaleDetails)
+app.controller('createPDF', createPDF)
 
 export default app

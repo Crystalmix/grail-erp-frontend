@@ -3463,6 +3463,12 @@ levn@~0.2.5:
     prelude-ls "~1.1.0"
     type-check "~0.3.1"
 
+linebreak@~0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/linebreak/-/linebreak-0.1.2.tgz#67ef2db4a4698902e87eba9a0ee4f8490aa717e6"
+  dependencies:
+    unicode-trie "^0.1.1"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -3485,6 +3491,10 @@ loader-utils@0.2.x, loader-utils@^0.2.11, loader-utils@^0.2.15, loader-utils@^0.
     emojis-list "^2.0.0"
     json5 "^0.5.0"
     object-assign "^4.0.1"
+
+lodash-node@^3.1.0:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/lodash-node/-/lodash-node-3.10.2.tgz#2598d5b1b54e6a68b4cb544e5c730953cbf632f7"
 
 lodash._baseassign@^3.0.0:
   version "3.2.0"
@@ -3592,7 +3602,7 @@ lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
 
-lodash@^3.8.0:
+lodash@^3.1.0, lodash@^3.8.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
@@ -4185,6 +4195,21 @@ pbkdf2@^3.0.3:
   dependencies:
     create-hmac "^1.1.2"
 
+pdfkit@~0.7.1:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/pdfkit/-/pdfkit-0.7.2.tgz#a6e67512e56f6de2bdd7b63388f461b47baa8c97"
+  dependencies:
+    linebreak "~0.1.0"
+    png-js ">=0.1.0"
+
+"pdfmake@https://github.com/bpampuch/pdfmake.git#0.1.20":
+  version "0.1.20"
+  resolved "https://github.com/bpampuch/pdfmake.git#ce8a2609986a3bf6e3c83f61741d4c56ca0b4ca0"
+  dependencies:
+    lodash "^3.1.0"
+    lodash-node "^3.1.0"
+    pdfkit "~0.7.1"
+
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
@@ -4232,6 +4257,10 @@ pkg-up@^1.0.0:
 pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
+
+png-js@>=0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/png-js/-/png-js-0.1.1.tgz#1cc7c212303acabe74263ec3ac78009580242d93"
 
 portfinder@^1.0.9:
   version "1.0.10"
@@ -5504,6 +5533,10 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
 
+"ui-select@https://github.com/angular-ui/ui-select.git#v0.19.6":
+  version "0.19.6"
+  resolved "https://github.com/angular-ui/ui-select.git#3b00c3f72c8fc770b69df1e5e7c21e62c0437a26"
+
 uid-number@~0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
@@ -5515,6 +5548,10 @@ ultron@1.0.x:
 underscore@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+
+unicode-trie@^0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/unicode-trie/-/unicode-trie-0.1.2.tgz#bd3c528bc3360cafdf71f0863cbec29fc0e84ec8"
 
 uniq@^1.0.1:
   version "1.0.1"
