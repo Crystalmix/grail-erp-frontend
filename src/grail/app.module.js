@@ -63,6 +63,8 @@ import WarehouseDetails from './controllers/warehouses/details'
 
 import Sales from './controllers/sales/sales'
 
+import Purchases from './controllers/purchases/list'
+import PurchaseDetails from './controllers/purchases/details'
 
 const app = angular.module('grail', [
   'ngjsgrid',
@@ -119,5 +121,8 @@ app.controller('Warehouses', Warehouses)
 app.controller('WarehouseDetails', WarehouseDetails)
 
 app.controller('Sales', Sales)
+
+app.controller('Purchases', Purchases)
+app.controller('PurchaseDetails', PurchaseDetails)
 
 export default app

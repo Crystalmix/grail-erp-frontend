@@ -18,6 +18,9 @@ import warehouses_details_template from '../templates/warehouses/details.tpl.htm
 
 import sales_template from '../templates/sales/list.tpl.html'
 
+import purchases_template from '../templates/purchases/list.tpl.html'
+import purchase_details_template from '../templates/purchases/details.tpl.html'
+
 
 export default function ($stateProvider) {
   $stateProvider
@@ -143,19 +146,19 @@ export default function ($stateProvider) {
   .state('purchases', {
     url: '/purchases',
     controller: 'Purchases',
-    templateUrl: 'templates/purchases/list.html',
+    template: purchases_template,
     requireLogin: true,
   })
   .state('purchase_add', {
     url: '/purchases/add',
     controller: 'PurchaseDetails',
-    templateUrl: 'templates/purchases/details.html',
+    template: purchase_details_template,
     requireLogin: true,
   })
   .state('purchase_edit', {
     url: '/purchases/:id',
     controller: 'PurchaseDetails',
-    templateUrl: 'templates/purchases/details.html',
+    template: purchase_details_template,
     requireLogin: true,
   })
 
