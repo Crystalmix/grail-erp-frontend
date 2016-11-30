@@ -68,6 +68,7 @@ import EditQuantity from './controllers/products/edit_quantity'
 import ProductEdit from './controllers/products/edit'
 
 import Warehouses from './controllers/warehouses/list'
+import WarehouseDetails from './controllers/warehouses/details'
 
 import Sales from './controllers/sales/sales'
 import SaleDetails from './controllers/sales/sale_detail'
@@ -75,6 +76,8 @@ import createPDF from './controllers/sales/create_pdf'
 
 import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/sales/utils'
 
+import Purchases from './controllers/purchases/list'
+import PurchaseDetails from './controllers/purchases/details'
 
 const app = angular.module('grail', [
   'ngjsgrid',
@@ -137,9 +140,13 @@ app.controller('ProductAdd', ProductAdd)
 app.controller('ProductEdit', ProductEdit)
 
 app.controller('Warehouses', Warehouses)
+app.controller('WarehouseDetails', WarehouseDetails)
 
 app.controller('Sales', Sales)
 app.controller('SaleDetails', SaleDetails)
 app.controller('createPDF', createPDF)
+
+app.controller('Purchases', Purchases)
+app.controller('PurchaseDetails', PurchaseDetails)
 
 export default app
