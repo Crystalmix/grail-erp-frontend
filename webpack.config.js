@@ -7,10 +7,15 @@ const WebpackMd5Hash = require('webpack-md5-hash')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 
+const SENTRY_DSN = 'http://97708a52f59d4b288c54470f8734542b@sentry.grail.crystalnix.com/2'
+
+
 const config = {
   context: path.join(__dirname, 'src'),
   entry: {
     vendor: [
+      'raven-js',
+      'raven-js/plugins/angular',
       'jquery',
       'jquery-ui',
       'bootstrap/dist/js/bootstrap',
@@ -86,6 +91,7 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN || SENTRY_DSN),
       },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

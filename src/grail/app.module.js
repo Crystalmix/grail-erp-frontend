@@ -1,3 +1,5 @@
+/* @flow */
+
 import 'jquery'
 import 'jquery-ui'
 
@@ -79,7 +81,7 @@ import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/sales/
 import Purchases from './controllers/purchases/list'
 import PurchaseDetails from './controllers/purchases/details'
 
-const app = angular.module('grail', [
+const app_requirements = [
   'ngjsgrid',
   'ui.router',
   'ui.grid',
@@ -93,7 +95,13 @@ const app = angular.module('grail', [
   'ngDialog',
   'selectize',
   'mgcrea.ngStrap',
-])
+]
+
+if (process.env.NODE_ENV === 'production') {
+  app_requirements.push('ngRaven')
+}
+
+const app = angular.module('grail', app_requirements)
 
 app.run(login_require)
 app.config(routing)

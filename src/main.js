@@ -7,6 +7,9 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
 
+// Setup sentry
+import './sentry'
+
 // Styles
 import './nifty_template/nifty.css'
 import './nifty_template/nifty'
