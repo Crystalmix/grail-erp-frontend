@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 
 export default () => {
   const combine = (...args) => {

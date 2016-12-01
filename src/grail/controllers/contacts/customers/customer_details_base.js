@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-param-reassign: 0 */
 /* eslint no-unneeded-ternary: 0 */
 

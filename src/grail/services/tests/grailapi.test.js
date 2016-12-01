@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-underscore-dangle: 0 */
 /* global describe, it, afterEach, beforeEach */
 

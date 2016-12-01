@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-alert: 0 */
 
 export default ($scope) => {

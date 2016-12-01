@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-param-reassign: 0 */
 
 export default ($scope, api, auth_status, $state, profile_settings) => {

@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-bitwise: 0 */
 
 export default () =>

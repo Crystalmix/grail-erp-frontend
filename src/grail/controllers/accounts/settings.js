@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-param-reassign: 0 */
 
 export default ($scope, popup, api, profile_settings, settings_constants) => {

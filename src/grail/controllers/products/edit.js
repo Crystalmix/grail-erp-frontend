@@ -1,9 +1,10 @@
-/* @flow */
+/* @flow weak */
 /* eslint no-param-reassign: 0 */
 
 import _ from 'underscore'
 
 import edit_quantity_template from '../../../templates/products/edit_quantity.tpl.html'
+
 
 export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q) => {
   let lastWeight = 0

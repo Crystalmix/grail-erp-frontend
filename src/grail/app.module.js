@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 
 import 'jquery'
 import 'jquery-ui'

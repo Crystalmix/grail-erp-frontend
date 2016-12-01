@@ -1,3 +1,5 @@
+/* @flow weak */
+
 import login_template from '../templates/accounts/login.tpl.html'
 import signup_template from '../templates/accounts/signup.tpl.html'
 import reset_template from '../templates/accounts/reset.tpl.html'

@@ -1,12 +1,12 @@
 [ignore]
+<PROJECT_ROOT>/dist/.*
+.*\.test\.js
 
 [include]
 
 [libs]
 
 [options]
-
-declare var describe: any;
-declare var it: any;
-declare var afterEach: any;
-declare var beforeEach: any;
+module.system.node.resolve_dirname=<PROJECT_ROOT>/src
+module.system.node.resolve_dirname=node_modules
+module.name_mapper='.*\.html$' -> '<PROJECT_ROOT>/src/flow/url-loader.js'
