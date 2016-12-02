@@ -10,7 +10,8 @@
     "build": "webpack --progress",
     "build:prod": "NODE_ENV=production webpack --progress",
     "build:dev": "NODE_ENV=dev webpack --progress",
-    "profile": "NODE_ENV=profile webpack --profile"
+    "profile": "NODE_ENV=profile webpack --profile",
+    "test": "karma start karma.conf.js --browsers PhantomJS"
   },
   "dependencies": {
     "angular": "^1.5.8",

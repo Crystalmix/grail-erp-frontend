@@ -2,13 +2,16 @@
 /* eslint no-param-reassign: 0 */
 
 import _ from 'underscore'
-
+import type { ProductItemObject, PriceObject, StockObject } from '../../types'
 import edit_quantity_template from '../../../templates/products/edit_quantity.tpl.html'
+import { getQuantity } from './utils'
 
 
 export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q) => {
   let lastWeight = 0
   let product_id = $state.params.id
+
+  $scope.getQuantity = getQuantity
 
   $controller('ProductDetailsBase', { $scope })
   $scope.is_new = false
@@ -56,11 +59,6 @@ export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q)
             enableFiltering: false,
             field: `data.${field}`,
           }))
-  }
-
-  $scope.getQuantity = (item) => {
-    const quantity = _.reduce(item.warehouses, (total, i) => total + (i.quantity || 0), 0)
-    return quantity
   }
 
   $scope.gridOptions = {
@@ -169,7 +167,7 @@ export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q)
   })
 
   $scope.open = (item) => {
-    prepareItemWarehouses(item)
+    // prepareItemWarehouses(item)
     ngDialog.open({
       template: edit_quantity_template,
       plain: true,

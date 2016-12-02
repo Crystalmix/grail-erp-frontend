@@ -14,7 +14,8 @@
     "flowtype-errors/show-errors": 2,
     "no-prototype-builtins": 0,
     "no-duplicate-imports": 0,
-    "camelcase": 0
+    "camelcase": 0,
+    "max-len": ["error", 120]
   },
   "env": {
     "mocha": true,

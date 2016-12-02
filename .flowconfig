@@ -5,6 +5,7 @@
 [include]
 
 [libs]
+src/flow/interfaces
 
 [options]
 module.system.node.resolve_dirname=<PROJECT_ROOT>/src
