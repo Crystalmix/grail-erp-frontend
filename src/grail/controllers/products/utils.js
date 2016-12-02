@@ -22,6 +22,8 @@ export const getQuantityByWarehouses = (ProductItem: ProductItemObject): {[key: 
 
 export const getQuantityByWarehouse = (ProductItem: ProductItemObject, warehouseId: number): number => (
   ProductItem.prices.reduce((total, price) => (
-    total + price.stocks.filter((stock) => stock.warehouse === warehouseId).reduce((stockTotal, stock) => stockTotal + stock.quantity, 0)
+    total + price.stocks.filter((stock) =>
+      stock.warehouse === warehouseId).reduce((stockTotal, stock) =>
+        stockTotal + stock.quantity, 0)
   ), 0)
 )

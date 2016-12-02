@@ -5,12 +5,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WebpackMd5Hash = require('webpack-md5-hash')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const HappyPack = require('happypack')
 
 
 const SENTRY_DSN = 'http://97708a52f59d4b288c54470f8734542b@sentry.grail.crystalnix.com/2'
 
 
 const config = {
+  devtool: false,
   context: path.join(__dirname, 'src'),
   entry: {
     vendor: [
@@ -56,13 +58,11 @@ const config = {
       {
         test: /\.js$/,
         include: /src/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components|dist|coverage)/,
         use: [
           {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
+            loader: 'happypack/loader',
+            options: { id: 'js' },
           },
         ],
       },
@@ -72,10 +72,6 @@ const config = {
           fallbackLoader: 'style-loader',
           loader: 'css-loader',
         }),
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
       },
       { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url-loader?limit=10000' },
       { test: /\.tpl.html/, loader: 'html-loader' },
@@ -96,6 +92,10 @@ const config = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([{ from: 'images', to: 'images' }]),
+    new HappyPack({ 
+      id: 'js',
+      loaders: [ 'babel-loader?cacheDirectory=true' ],
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'src'),
