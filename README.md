@@ -14,8 +14,12 @@ $ cd grail-erp-frontend
 $ yarn
 # Build
 $ npm run build
+# Build DLL
+$ npm run build:dll
 # Build production
 $ npm run build:production
+# Run tests
+$ npm run test
 # Run dev server
 $ npm run serve
 # Open http://127.0.0.1:8080/

@@ -15,27 +15,6 @@ const config = {
   devtool: false,
   context: path.join(__dirname, 'src'),
   entry: {
-    vendor: [
-      'raven-js',
-      'raven-js/plugins/angular',
-      'jquery',
-      'jquery-ui',
-      'bootstrap/dist/js/bootstrap',
-      'underscore',
-      'angular',
-      'angular-ui-router',
-      'angular-ui-grid',
-      'angular-ui-sortable',
-      'angular-strap/dist/angular-strap',
-      'angular-strap/dist/angular-strap.tpl',
-      'ui-select',
-      'pdfmake/build/pdfmake',
-      'pdfmake/build/vfs_fonts',
-      'selectize',
-      'angular-selectize',
-      'ng-dialog',
-      'jsgrid/dist/jsgrid',
-    ],
     main: './main.js',
   },
   resolve: {
@@ -78,9 +57,12 @@ const config = {
     ],
   },
   plugins: [
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, 'src'),
+      manifest: require('./dist/dll/vendor-manifest.json'),
+    }),
     new WebpackMd5Hash(),
     new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'], minChunks: 2 }),
     new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery', 'window.jQuery': 'jquery' }),
     new webpack.ProvidePlugin({ Selectize: 'selectize', 'window.Selectize': 'selectize' }),
     new ExtractTextPlugin('styles.css'),
@@ -92,13 +74,13 @@ const config = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([{ from: 'images', to: 'images' }]),
-    new HappyPack({ 
+    new HappyPack({
       id: 'js',
-      loaders: [ 'babel-loader?cacheDirectory=true' ],
+      loaders: ['babel-loader?cacheDirectory=true'],
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'src'),
+    contentBase: path.join(__dirname, 'dist'),
   },
 }
 
@@ -114,7 +96,6 @@ if (process.env.NODE_ENV === 'production') {
     sourceMapIncludeSources: true,
   }))
 } else {
-  // config.devtool = 'eval-source-map'
   config.devtool = 'eval'
 }
 
