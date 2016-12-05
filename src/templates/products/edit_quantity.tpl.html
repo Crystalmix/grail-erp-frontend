@@ -1,22 +1,53 @@
-<div class="table-responsive">
-    <h2>{{item.Code}}</h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Warehouse</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="warehouse in warehouses">
-            <td>{{ warehouse.name }}</td>
-            <td>
-                {{ getQuantityByWarehouse(item, warehouse.id) }}
-            </td>
-          </tr>
-        </tbody>
-    </table>
-    <h3>Total: {{ getQuantity(item) }}</h3>
-    <!--<button class="btn btn-success" ng-click="save()">Save</button>-->
-    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+<div class="">
+  <h2>{{item.Code}}</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Warehouse</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="warehouse in warehouses">
+        <td>{{ warehouse.name }}</td>
+        <td>
+          {{ getQuantityByWarehouse(item, warehouse.id) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Total: {{ getQuantity(item) }}</h3>
+  <button type="button" class="btn btn-success" ng-click="isCollapsed = !isCollapsed">Add Transaction</button>
+  <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+  <div uib-collapse="isCollapsed">
+    {{newTransaction}}
+    <hr/>
+    <form name="newTransactionForm">
+      <div class="form-group">
+        <label>Warehouse</label>
+        <selectize required options="warehouses" config="warehousesConfig" ng-model="newTransaction.warehouse"></selectize>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input required ng-model="newTransaction.price" class="form-control" type='number' step='0.01' value='0.00' placeholder='0.00' min="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Quantity</label>
+        <input required ng-model="newTransaction.quantity" type="number" class="form-control" placeholder="Quantity" min="1" value="1">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea required ng-model="newTransaction.description" class="form-control" rows="2" placeholder="Description"></textarea>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-success pull-right" ng-click="save()" ng-disabled="newTransactionForm.$invalid">Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

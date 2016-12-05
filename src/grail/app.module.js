@@ -6,6 +6,7 @@ import 'jquery-ui'
 import 'angular-ui-router'
 import 'angular-ui-grid'
 import 'angular-ui-sortable'
+import 'angular-ui-bootstrap'
 import 'angular-strap/dist/angular-strap'
 import 'angular-strap/dist/angular-strap.tpl'
 
@@ -92,6 +93,7 @@ const app_requirements = [
   'ui.grid.autoResize',
   'ui.sortable',
   'ui.select',
+  'ui.bootstrap',
   'ngDialog',
   'selectize',
   'mgcrea.ngStrap',

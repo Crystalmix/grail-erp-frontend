@@ -24,6 +24,7 @@ module.exports = {
       'angular-selectize',
       'ng-dialog',
       'jsgrid/dist/jsgrid',
+      'angular-ui-bootstrap',
       path.join(__dirname, 'src', 'nifty_template', 'nifty'),
     ],
   },
