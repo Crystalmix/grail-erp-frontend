@@ -2,9 +2,9 @@
 /* eslint no-param-reassign: 0 */
 
 import _ from 'underscore'
-import type { ProductItemObject, PriceObject, StockObject } from '../../types'
+import type { Transaction } from '../../types'
 import edit_quantity_template from '../../../templates/products/edit_quantity.tpl.html'
-import { getQuantity } from './utils'
+import { getQuantity, updateStock } from './utils'
 
 
 export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q) => {
@@ -176,6 +176,11 @@ export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q)
       resolve: {
         product_item() { return item },
         warehouses() { return $scope.warehouses },
+        onAddTransaction() {
+          return (transaction: Transaction) => {
+            updateStock(transaction, item)
+          }
+        },
       },
     })
   }

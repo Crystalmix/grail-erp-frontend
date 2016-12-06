@@ -65,6 +65,12 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-ladda@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/angular-ladda/-/angular-ladda-0.4.3.tgz#2b4134c68f20522136f9b6ae6411b55cfbf47c31"
+  dependencies:
+    ladda ">=0.9.8"
+
 angular-mocks@^1.5.8:
   version "1.5.9"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.5.9.tgz#5d6d6b37873d6c59e32e195f5de161f4a3f2f7e8"
@@ -3460,6 +3466,12 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
+ladda@>=0.9.8:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ladda/-/ladda-1.0.0.tgz#447687ca4aeda438f616cb7710d8063ac96e9f29"
+  dependencies:
+    spin.js "^2.0.0"
+
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
@@ -4234,6 +4246,10 @@ pdfkit@~0.7.1:
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
+
+phantomjs-polyfill-find@ptim/phantomjs-polyfill-find:
+  version "0.0.1"
+  resolved "https://codeload.github.com/ptim/phantomjs-polyfill-find/tar.gz/026b69dcabe743265f5214775e42f8d1e8aabedc"
 
 phantomjs-prebuilt@^2.1.7:
   version "2.1.13"
@@ -5294,6 +5310,10 @@ spdy@^3.4.1:
     http-deceiver "^1.2.4"
     select-hose "^2.0.0"
     spdy-transport "^2.0.15"
+
+spin.js@^2.0.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/spin.js/-/spin.js-2.3.2.tgz#6caa56d520673450fd5cfbc6971e6d0772c37a1a"
 
 sprintf-js@~1.0.2:
   version "1.0.3"

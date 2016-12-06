@@ -102,5 +102,8 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   // Tax Rates
   api.getTaxRates = () => api.request('GET', '/tax_rates/')
 
+  // Transaction
+  api.addTransaction = (newTransaction: {}) => api.request('POST', '/transactions/', newTransaction)
+
   return api
 }

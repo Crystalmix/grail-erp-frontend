@@ -87,6 +87,8 @@ const client_tests: TestMethodOptions[] = [
 
   { method: 'getTaxRates', args: [], url: '/api/tax_rates/' },
   { method: 'getAccounts', args: [], url: '/api/accounts/' },
+
+  { method: 'addTransaction', args: [data], url: '/api/transactions/', http_method: POST },
 ]
 
 describe('Grail ERP API Client', () => {

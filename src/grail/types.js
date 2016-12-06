@@ -30,3 +30,12 @@ export type ProductObject = {
   TaxRate: number | null,
   items: ProductItemObject[],
 }
+
+export type Transaction = {|
+  id: number,
+  product_price_id: number,
+  product_item_id: number,
+  warehouse: number,
+  quantity: number,
+  description: string,
+|}

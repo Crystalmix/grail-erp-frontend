@@ -15,6 +15,7 @@ module.exports = {
       'angular-ui-router',
       'angular-ui-grid',
       'angular-ui-sortable',
+      'angular-ladda',
       'angular-strap/dist/angular-strap',
       'angular-strap/dist/angular-strap.tpl',
       'ui-select',

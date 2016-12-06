@@ -5,9 +5,9 @@ import _ from 'underscore'
 import { getQuantityByWarehouse, getQuantity } from './utils.js'
 
 /*
-type Transaction = {|
-  warehouse: number,
-  product_item: number,
+type CreateTransaction = {|
+  warehouse_id: number,
+  product_item_id: number,
   quantity: number,
   price: string,
   description: string
@@ -21,10 +21,11 @@ type Warehouse = {|
 
 const getDefaultWarehouseId = (warehouses: Warehouse[]): number => warehouses[0].id
 
-export default ($scope, api, product_item, warehouses) => {
+export default ($scope, api, product_item, warehouses, onAddTransaction) => {
+  $scope.loading = false
   $scope.newTransaction = {
-    product_item: product_item.id,
-    warehouse: getDefaultWarehouseId(warehouses),
+    product_item_id: product_item.id,
+    warehouse_id: getDefaultWarehouseId(warehouses),
   }
 
   $scope.warehousesConfig = {
@@ -42,6 +43,15 @@ export default ($scope, api, product_item, warehouses) => {
   $scope.item = product_item
   $scope.warehouses = warehouses
   $scope.data = []
+
+  $scope.addTransaction = () => {
+    $scope.loading = true
+    api.addTransaction($scope.newTransaction).then((resp) => {
+      $scope.loading = false
+      onAddTransaction(resp.data)
+      $scope.closeThisDialog()
+    })
+  }
 
   $scope.cancel = () => $scope.closeThisDialog()
 }

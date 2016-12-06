@@ -1,7 +1,7 @@
 /* @flow weak */
 /* eslint no-param-reassign: 0 */
 
-import type { ProductItemObject, PriceObject, StockObject } from '../../types'
+import type { ProductItemObject, PriceObject, StockObject, Transaction } from '../../types'
 
 
 export const getQuantity = (ProductItem: ProductItemObject): number => (
@@ -27,3 +27,34 @@ export const getQuantityByWarehouse = (ProductItem: ProductItemObject, warehouse
         stockTotal + stock.quantity, 0)
   ), 0)
 )
+
+export const updateStock = (transaction: Transaction, productItem: ProductItemObject): ProductItemObject => {
+  const newProductItem = { ...productItem }
+  const productPrice: PriceObject | void = newProductItem.prices.find((i: PriceObject) => (
+    i.id === transaction.product_price_id
+  ))
+  if (productPrice) {
+    const stock = productPrice.stocks.find(i => i.warehouse === transaction.warehouse)
+
+    if (stock) {
+      stock.quantity += transaction.quantity
+    } else {
+      const newStock = {
+        warehouse: transaction.warehouse,
+        quantity: transaction.quantity,
+      }
+      productPrice.stocks.push(newStock)
+    }
+  } else {
+    const newStock = {
+      warehouse: transaction.warehouse,
+      quantity: transaction.quantity,
+    }
+    const newProductPrice = {
+      id: transaction.product_price_id,
+      stocks: [newStock],
+    }
+    newProductItem.prices.push(newProductPrice)
+  }
+  return newProductItem
+}

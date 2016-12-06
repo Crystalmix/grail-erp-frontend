@@ -36,7 +36,7 @@ const config = {
       {
         test: /\.js$/,
         include: /src/,
-        exclude: /(node_modules|bower_components|dist|coverage)/,
+        exclude: /(node_modules|bower_components|dist|coverage|tests)/,
         use: [
           {
             loader: 'babel-loader',

@@ -28,6 +28,7 @@ module.exports = (config) => {
       ],
     },
     files: [
+      './node_modules/phantomjs-polyfill-find/find-polyfill.js',
       {
         pattern: 'dist/dll/dll.vendor.js',
         watched: false,

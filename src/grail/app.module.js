@@ -10,6 +10,10 @@ import 'angular-ui-bootstrap'
 import 'angular-strap/dist/angular-strap'
 import 'angular-strap/dist/angular-strap.tpl'
 
+// angular-ladda
+import 'angular-ladda'
+import 'ladda/dist/ladda-themeless.min.css'
+
 // angular-ui-select
 import 'ui-select'
 import 'ui-select/dist/select.css'
@@ -83,6 +87,7 @@ import Purchases from './controllers/purchases/list'
 import PurchaseDetails from './controllers/purchases/details'
 
 const app_requirements = [
+  'angular-ladda',
   'ngjsgrid',
   'ui.router',
   'ui.grid',

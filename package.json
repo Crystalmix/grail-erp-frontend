@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-ladda": "^0.4.3",
     "angular-selectize2": "https://github.com/rwmeta/angular-selectize.git#master",
     "angular-strap": "^2.3.10",
     "angular-ui-bootstrap": "^2.3.0",
@@ -73,7 +74,9 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
+    "lodash": "^4.17.2",
     "mocha": "^3.2.0",
+    "phantomjs-polyfill-find": "ptim/phantomjs-polyfill-find",
     "resolve-url-loader": "^1.6.0",
     "sinon": "2.0.0-pre.4",
     "style-loader": "^0.13.1",
