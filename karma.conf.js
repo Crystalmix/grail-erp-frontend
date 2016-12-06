@@ -1,12 +1,9 @@
 const webpackConfig = require('./webpack.config')
 
-// https://github.com/webpack/karma-webpack/issues/24
-const commonsChunkPluginIndex = webpackConfig.plugins.findIndex(plugin => plugin.chunkNames)
-webpackConfig.plugins.splice(commonsChunkPluginIndex, 1)
 webpackConfig.module.rules[0] = {
   test: /\.js$/,
   include: /src/,
-  exclude: /(node_modules|bower_components)/,
+  exclude: /(node_modules|bower_components|dist|coverage)/,
   use: [
     {
       loader: 'babel-istanbul-loader',
@@ -31,6 +28,11 @@ module.exports = (config) => {
       ],
     },
     files: [
+      {
+        pattern: 'dist/dll/dll.vendor.js',
+        watched: false,
+        served: true,
+      },
       'src/**/*.test.js',
     ],
     frameworks: ['mocha'],
