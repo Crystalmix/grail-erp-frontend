@@ -4,7 +4,7 @@
 import { assert } from 'chai'
 import _ from 'lodash'
 
-import type { ProductItemObject, Transaction } from '../../../types'
+import type { ProductItem, Transaction } from '../../../types'
 import { getQuantityByWarehouse, getQuantity, getQuantityByWarehouses, updateStock } from './../utils'
 
 const transaction: Transaction = {
@@ -16,7 +16,7 @@ const transaction: Transaction = {
   description: 'Description',
 }
 
-const ProductItem: ProductItemObject = {
+const productItemFake: ProductItem = {
   id: 8,
   Code: 'imac24i58 Gb',
   weight: null,
@@ -65,38 +65,38 @@ const ProductItem: ProductItemObject = {
 
 describe('Test ProductEdit Controller', () => {
   it('getQuantity', () => {
-    assert.equal(getQuantity(ProductItem), 70)
+    assert.equal(getQuantity(productItemFake), 70)
     assert.equal(getQuantity({ prices: [] }), 0)
   })
 
   it('getQuantityByWarehouses', () => {
     const expectedData = { '1': 20, '2': 20, '3': 30 }
-    assert.deepEqual(getQuantityByWarehouses(ProductItem), expectedData)
+    assert.deepEqual(getQuantityByWarehouses(productItemFake), expectedData)
   })
 
   it('getQuantityByWarehouse', () => {
-    assert.equal(getQuantityByWarehouse(ProductItem, 1), 20)
-    assert.equal(getQuantityByWarehouse(ProductItem, 2), 20)
-    assert.equal(getQuantityByWarehouse(ProductItem, 3), 30)
-    assert.equal(getQuantityByWarehouse(ProductItem, 4), 0)
+    assert.equal(getQuantityByWarehouse(productItemFake, 1), 20)
+    assert.equal(getQuantityByWarehouse(productItemFake, 2), 20)
+    assert.equal(getQuantityByWarehouse(productItemFake, 3), 30)
+    assert.equal(getQuantityByWarehouse(productItemFake, 4), 0)
   })
 
   it('updateStock (stock in)', () => {
-    const productItem = _.cloneDeep(ProductItem)
+    const productItem = _.cloneDeep(productItemFake)
     const newProductItem = updateStock(transaction, productItem)
     assert.equal(getQuantity(newProductItem), 170)
   })
 
   it('updateStock (stock out)', () => {
     const newTransaction = { ...transaction, quantity: -10 }
-    const productItem = _.cloneDeep(ProductItem)
+    const productItem = _.cloneDeep(productItemFake)
     const newProductItem = updateStock(newTransaction, productItem)
     assert.equal(getQuantity(newProductItem), 60)
   })
 
   it('updateStock (stock in => new price)', () => {
     const newTransaction = { ...transaction, quantity: 30, product_price_id: 66 }
-    const productItem = _.cloneDeep(ProductItem)
+    const productItem = _.cloneDeep(productItemFake)
     const newProductItem = updateStock(newTransaction, productItem)
     assert.equal(getQuantity(newProductItem), 100)
 

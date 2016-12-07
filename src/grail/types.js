@@ -1,27 +1,27 @@
 /* @flow */
 
-export type StockObject = {|
+export type Stock = {|
   id: number,
   warehouse: number,
   quantity: number,
 |}
 
-export type PriceObject = {|
+export type Price = {|
   id: number,
   price: string,
-  stocks: StockObject[],
+  stocks: Stock[],
 |}
 
-export type ProductItemObject = {
+export type ProductItem = {
   id: number,
   Code: string,
   weight: number | null,
   data: {[key: string]: string},
   is_active: boolean,
-  prices: PriceObject[],
+  prices: Price[],
 }
 
-export type ProductObject = {
+export type Product = {
   id: number,
   Code: string,
   Name: string,
@@ -30,7 +30,7 @@ export type ProductObject = {
   Description: string,
   Account: number | null,
   TaxRate: number | null,
-  items: ProductItemObject[],
+  items: ProductItem[],
 }
 
 export type Transaction = {|
