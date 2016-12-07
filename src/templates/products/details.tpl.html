@@ -59,7 +59,7 @@
                 </div>
                 <div ng-show="taxRates" class="col-md-6">
                     <div class="form-group" ng-class="{placeholder: product.TaxRate == default_tax_rule}">
-                        <label for="sales_account">Tax Rule <span class="required-asterix">*</span></label>
+                        <label for="sales_account">Tax Rule Sales <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxConfig" options='taxRates'
                                    ng-model="product.TaxRate"></selectize>
                     </div>
