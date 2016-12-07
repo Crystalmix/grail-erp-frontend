@@ -57,11 +57,18 @@
                                    ng-model="product.Account"></selectize>
                     </div>
                 </div>
-                <div ng-show="taxRates" class="col-md-6">
+                <div ng-show="taxRates" class="col-md-3">
                     <div class="form-group" ng-class="{placeholder: product.TaxRate == default_tax_rule}">
                         <label for="sales_account">Tax Rule Sales <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxConfig" options='taxRates'
                                    ng-model="product.TaxRate"></selectize>
+                    </div>
+                </div>
+                <div ng-show="taxRates" class="col-md-3">
+                    <div class="form-group" ng-class="{placeholder: product.tax_rate_purchases == default_tax_rule_purchases}">
+                        <label for="sales_account">Tax Rule Purchases <span class="required-asterix">*</span></label>
+                        <selectize id="tax_rate-account" config="taxPurchaseConfig" options='taxRates'
+                                   ng-model="product.tax_rate_purchases"></selectize>
                     </div>
                 </div>
             </div>

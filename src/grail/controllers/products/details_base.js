@@ -27,6 +27,7 @@ export default ($scope, api, $state, $controller, profile_settings, settings_con
 
   $scope.default_sales_account = profile_settings.getXeroSettings(settings_constants.default.sales_account)
   $scope.default_tax_rule = profile_settings.getXeroSettings(settings_constants.default.tax_rule)
+  $scope.default_tax_rule_purchases = profile_settings.getXeroSettings(settings_constants.default.tax_rule_purchases)
 
   $scope.accountConfig = {
     create: false,
@@ -46,6 +47,16 @@ export default ($scope, api, $state, $controller, profile_settings, settings_con
     valueField: 'id',
     searchField: ['name'],
     onChange(val) { $scope.product.TaxRate = parseInt(val, 10) },
+  }
+
+  $scope.taxPurchaseConfig = {
+    create: false,
+    labelField: 'name',
+    maxItems: 1,
+    persist: false,
+    valueField: 'id',
+    searchField: ['name'],
+    onChange(val) { $scope.product.tax_rate_purchases = parseInt(val, 10) },
   }
 
   $scope.save = () => {

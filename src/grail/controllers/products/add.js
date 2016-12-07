@@ -18,6 +18,7 @@ export default ($scope, $controller, product_generator, ngDialog, api) => {
   $scope.options = {}
   $scope.product.Account = $scope.default_sales_account
   $scope.product.TaxRate = $scope.default_tax_rule
+  $scope.product.tax_rate_purchases = $scope.default_tax_rule_purchases
 
   const renderGrid = () => {
     const prepareItems = () => {

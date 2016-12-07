@@ -45,6 +45,17 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tax-rule-sale">Default Tax Rule - Purchases</label>
+                        <selectize id="tax-rule-sale" config="taxPurchasesConfig" options='tax_rates'
+                                   ng-model="default_tax_rule_purchases"
+                                   placeholder="Select a default tax rule - purchase ..."></selectize>
+                    </div>
+
+                </div>
+            </div>
             <div>
                 <div class="col-md-6">
                     <div class="form-group">
