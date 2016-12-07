@@ -25,6 +25,8 @@ export type ProductObject = {
   id: number,
   Code: string,
   Name: string,
+  buy_price: string,
+  sell_price: string,
   Description: string,
   Account: number | null,
   TaxRate: number | null,

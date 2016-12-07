@@ -10,17 +10,43 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="name">Code/Name <span class="required-asterix">*</span></label>
                         <input type="text" class="form-control" placeholder="Code" ng-model="product.Code" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="description">Description <span class="required-asterix">*</span></label>
                         <input type="text" class="form-control" placeholder="Description"
                                ng-model="product.Description" required>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="name">Buy Price <span class="required-asterix">*</span></label>
+                        <div class="input-group">
+                          <div class="input-group-addon">$</div>
+                          <input required
+                                ng-model="product.buy_price"
+                                class="form-control"
+                                type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="name">Sell Price <span class="required-asterix">*</span></label>
+                        <div class="input-group">
+                          <div class="input-group-addon">$</div>
+                          <input required
+                                ng-model="product.sell_price"
+                                class="form-control"
+                                type="text">
+                        </div>
                     </div>
                 </div>
 
