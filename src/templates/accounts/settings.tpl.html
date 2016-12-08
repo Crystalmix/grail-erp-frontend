@@ -56,10 +56,21 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cogs-account">Default COGS Account</label>
+                        <selectize id="cogs-account" config="cogsAccountConfig" options='accounts'
+                                   ng-model="cogs_account"
+                                   placeholder="Select a default COGS cccount ..."></selectize>
+                    </div>
+
+                </div>
+            </div>
             <div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                        <button type="submit" ladda="isAJAX" class="btn btn-primary" ng-click="save()">Save</button>
                     </div>
                 </div>
             </div>

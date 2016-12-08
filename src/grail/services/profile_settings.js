@@ -10,6 +10,7 @@ function __guard__(value, transform) {
 export default (api, auth_status) => {
   let user = {
     profile: {
+      cogs_account: null,
       settings: {},
       xero_settings: {},
     },
@@ -42,6 +43,14 @@ export default (api, auth_status) => {
 
     setXeroSettings: (key, val) => {
       if (key && val) { user.profile.xero_settings[key] = val }
+    },
+
+    setProfile: (key: string, val: any) => {
+      user.profile[key] = val
+    },
+
+    getProfileAttr: (key: string): any => {
+      return user.profile[key]
     },
 
     getXeroSettings: (key) => {
