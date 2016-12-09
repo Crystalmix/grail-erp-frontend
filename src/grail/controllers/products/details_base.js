@@ -5,6 +5,7 @@ import _ from 'underscore'
 import angular from 'angular'
 
 export default ($scope, api, $state, $controller, profile_settings, settings_constants) => {
+  $scope.cancel = () => { $state.reload() }
   const prepareJson = () => {
     const json = _.clone($scope.product)
     json.items = $scope.productItems
@@ -59,14 +60,14 @@ export default ($scope, api, $state, $controller, profile_settings, settings_con
     onChange(val) { $scope.product.tax_rate_purchases = parseInt(val, 10) },
   }
 
-  $scope.save = () => {
+  $scope.save = (goTo = 'products') => {
     if ($scope.productItems) { cleanProductItems() }
     $scope.product.Name = $scope.product.Code
     if ($scope.product.id) {
-      api.updateProduct($scope.product.id, prepareJson()).then(() => $state.go('products'))
+      api.updateProduct($scope.product.id, prepareJson()).then(() => $state.go(goTo))
     } else {
       if ($scope.productItems) { addWeightToProductItems() }
-      api.addProduct(prepareJson()).then(() => $state.go('products'))
+      api.addProduct(prepareJson()).then(() => $state.go(goTo))
     }
   }
 }

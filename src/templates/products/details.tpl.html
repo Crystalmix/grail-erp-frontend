@@ -4,9 +4,23 @@
         <form name="details">
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-success pull-right" ng-click="save()"
-                            ng-disabled="details.$invalid">Save
-                    </button>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-success"
+                                ng-click="save()"
+                                ng-disabled="details.$invalid">Save</button>
+                        <button ng-disabled="details.$invalid"
+                                class="btn btn-success dropdown-toggle dropdown-toggle-icon"
+                                data-toggle="dropdown" type="button" aria-expanded="false">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="save()">Save & Go to Products</a></li>
+                            <li><a ng-click="save('product_add')">Save & Go to New</a></li>
+                            <li><a ng-click="save('home')">Save & Go to Dashboard</a></li>
+                            <li class="divider"></li>
+                            <li><a ng-click="cancel()">Cancel</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row">
