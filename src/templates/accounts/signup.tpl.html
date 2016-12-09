@@ -1,51 +1,46 @@
-<h1 class="page-header text-overflow ng-scope">Sign up</h1>
-
-<div class="panel ng-scope">
-    <div class="panel-body">
+<div class="cls-content">
+  <div id="bg-overlay"></div>
+  <div class="cls-content">
+    <div class="cls-content-lg panel">
+      <div class="panel-body">
+        <div class="mar-ver pad-btm">
+          <h3 class="h4 mar-no">Create a New Account</h3>
+        </div>
+        <div class="row" ng-show="error_msq" style="margin-top: 10px;">
+          <div class="alert alert-danger">
+            <button class="close" ng-click="error_msq=null;"><i class="glyphicon glyphicon-remove"></i></button> {{error_msq}}
+          </div>
+        </div>
         <form name="details">
-            <div class="row">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success pull-right" ng-click="save()"
-                            ng-disabled="details.$invalid">Sign up
-                    </button>
-                </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="E-mail" ng-model="data.email" required name="email">
+              </div>
             </div>
-            <div class="row" ng-show="error_msq" style="margin-top: 10px;">
-                <div class="alert alert-danger">
-                    <button class="close" ng-click="error_msq=null;"><i class="glyphicon glyphicon-remove"></i></button>
-                    {{error_msq}}
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="data.password1" name="password">
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Email</h4>
-
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email" required
-                               ng-model="data.email">
-                    </div>
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Repeat Password" ng-model="data.password2" name="password">
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Password</h4>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" required
-                               ng-model="data.password1">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Repeat Password</h4>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Repeat Password" required
-                               ng-model="data.password2">
-                    </div>
-                </div>
-            </div>
+          </div>
+          <!--<div class="checkbox pad-btm text-left">
+		                    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">
+		                    <label for="demo-form-checkbox">I agree with the <a href="#" class="btn-link">Terms and Conditions</a></label>
+		                </div>-->
+          <button class="btn btn-primary btn-block" ng-click="save()" ng-disabled="details.$invalid" type="submit">Register</button>
         </form>
+      </div>
+      <div class="pad-all">
+        Already have an account ? <a ui-sref="accounts" class="btn-link mar-rgt">Sign In</a>
+      </div>
     </div>
+  </div>
 </div>
