@@ -18,6 +18,10 @@ import 'ladda/dist/ladda-themeless.min.css'
 import 'ui-select'
 import 'ui-select/dist/select.css'
 
+// angular-loading-bar
+import 'angular-loading-bar'
+import 'angular-loading-bar/build/loading-bar.min.css'
+
 
 import 'selectize'
 import 'selectize/dist/css/selectize.default.css'
@@ -30,6 +34,8 @@ import 'ng-dialog/css/ngDialog-theme-default.min.css'
 import 'angular-ui-grid/ui-grid.css'
 
 import angular from 'angular'
+
+import 'angular-animate'
 
 import 'jsgrid/dist/jsgrid'
 import 'jsgrid/dist/jsgrid.css'
@@ -102,6 +108,8 @@ const app_requirements = [
   'ngDialog',
   'selectize',
   'mgcrea.ngStrap',
+  'angular-loading-bar',
+  'ngAnimate',
 ]
 
 if (process.env.NODE_ENV === 'production') {

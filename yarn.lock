@@ -65,11 +65,19 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-animate@1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.5.9.tgz#c958d524f9333a48abdaefb32947c7e611f54453"
+
 angular-ladda@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/angular-ladda/-/angular-ladda-0.4.3.tgz#2b4134c68f20522136f9b6ae6411b55cfbf47c31"
   dependencies:
     ladda ">=0.9.8"
+
+angular-loading-bar@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/angular-loading-bar/-/angular-loading-bar-0.9.0.tgz#37ef52c25f102c216e7b3cdfd2fc5a5df9628e45"
 
 angular-mocks@^1.5.8:
   version "1.5.9"

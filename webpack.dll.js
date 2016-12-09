@@ -12,6 +12,8 @@ module.exports = {
       'bootstrap/dist/js/bootstrap',
       'underscore',
       'angular',
+      'angular-animate',
+      'angular-loading-bar',
       'angular-ui-router',
       'angular-ui-grid',
       'angular-ui-sortable',
