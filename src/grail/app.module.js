@@ -86,14 +86,17 @@ import ProductEdit from './controllers/products/edit'
 import Warehouses from './controllers/warehouses/list'
 import WarehouseDetails from './controllers/warehouses/details'
 
-import Sales from './controllers/sales/sales'
-import SaleDetails from './controllers/sales/sale_detail'
-import createPDF from './controllers/sales/create_pdf'
+import InvoiceDetails from './controllers/invoices/details'
 
-import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/sales/utils'
+import Sales from './controllers/invoices/sales/sales'
+import SaleDetails from './controllers/invoices/sales/sale_detail'
+import ErrorQuantity from './controllers/invoices/sales/error_quantity'
+import createPDF from './controllers/invoices/sales/create_pdf'
 
-import Purchases from './controllers/purchases/list'
-import PurchaseDetails from './controllers/purchases/details'
+import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/invoices/sales/utils'
+
+import Purchases from './controllers/invoices/purchases/list'
+import PurchaseDetails from './controllers/invoices/purchases/details'
 
 const app_requirements = [
   'angular-ladda',
@@ -168,8 +171,11 @@ app.controller('ProductEdit', ProductEdit)
 app.controller('Warehouses', Warehouses)
 app.controller('WarehouseDetails', WarehouseDetails)
 
+app.controller('InvoiceDetails', InvoiceDetails)
+
 app.controller('Sales', Sales)
 app.controller('SaleDetails', SaleDetails)
+app.controller('ErrorQuantity', ErrorQuantity)
 app.controller('createPDF', createPDF)
 
 app.controller('Purchases', Purchases)

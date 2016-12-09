@@ -96,6 +96,8 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   api.updateSale = (id: number, data: {}) => api.request('PUT', `/invoices/${id}/`, data)
   api.addSale = (data: {}) => api.request('POST', '/invoices/', data)
 
+  api.updateStock = (id: number) => api.request('PUT', `/invoices/${id}/status/`)
+
   // Accounts
   api.getAccounts = () => api.request('GET', '/accounts/')
 

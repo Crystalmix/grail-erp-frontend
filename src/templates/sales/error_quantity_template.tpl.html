@@ -1,0 +1,24 @@
+<div class="panel-body">
+  <h3 class="panel-title">{{warehouse.name}}</h3>
+  <div uib-collapse="isCollapsed">
+    <hr/>
+    <table class="table table-bordered">
+      <tr>
+      <th> Product </th>
+      <th> Quantity </th>
+      </tr>
+      <tr ng-repeat="item in not_enough_list">
+        <td>
+          <span>{{ item[0] }}</span>
+        </td>
+        <td>
+          <span class="text-danger text-semibold">{{ item[1] }}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+  <div>
+    <span>The quanity can't be deducted from the Stock. Please check the quanity for Product Items.</span>
+  </div>
+</div>

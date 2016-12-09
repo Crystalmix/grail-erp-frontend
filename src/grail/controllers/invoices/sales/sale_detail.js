@@ -1,27 +1,23 @@
 /* @flow weak */
 /* eslint no-param-reassign: 0 */
+/* eslint no-underscore-dangle: 0 */
 
 import _ from 'underscore'
 import angular from 'angular'
+import { __guard__, amountFieldTemplate, cellMenuTemplate } from '../utils'
 
-import cellEditTemplateProduct from '../../../templates/sales/cellEditTemplateProduct.tpl.html'
+import cellEditTemplateProduct from '../../../../templates/sales/cellEditTemplateProduct.tpl.html'
+import error_quantity_template from '../../../../templates/sales/error_quantity_template.tpl.html'
 
-/* eslint no-underscore-dangle: 0 */
-function __guard__(value, transform) {
-  return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined
-}
-
-export default ($scope, api, $state, $q, $controller, uiGridValidateService, popup, xero, naturalService) => {
+export default ($scope, api, $state, $q, $controller, uiGridValidateService, ngDialog, popup, xero) => {
   $controller('BaseDetails', { $scope })
+  $controller('InvoiceDetails', { $scope })
 
-  $scope.export = () => popup(api.getInvoiceExportXeroUrl($state.params.id))
-
-  $scope.isNew = $state.params.hasOwnProperty('id')
-
-  $scope.data = {
+  const initialData = {
     Type: xero.invoice.sale_type,
     Contact: null,
     Date: null,
+    DueDate: null,
     OrderNumber: null,
     InvoiceNumber: null,
     Warehouse: null,
@@ -33,16 +29,7 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, pop
     Attention: null,
   }
 
-  $scope.tax_rates = []
-  $scope.customers = []
-  $scope.locations = []
-  $scope.warehouses = []
-  $scope.products = []
-  $scope.product_items = []
-  $scope.location_address = ''
-  $scope.removeLineItems = []
-
-  $scope.customerConfig = {
+  const customerConfig = {
     create: false,
     valueField: 'id',
     labelField: 'Name',
@@ -52,7 +39,6 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, pop
     onChange(val) {
       const id = parseInt(val, 10)
       $scope.data.Contact = id
-
       const customer = _.findWhere($scope.customers, { id })
       $scope.locations = __guard__(customer, x => x.Locations) || []
       if (__guard__($scope.locations, x1 => x1.length) === 1) {
@@ -64,7 +50,7 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, pop
     },
   }
 
-  $scope.locationConfig = {
+  const locationConfig = {
     create: false,
     valueField: 'id',
     labelField: 'Name',
@@ -82,7 +68,7 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, pop
     },
   }
 
-  $scope.warehouseConfig = {
+  const warehouseConfig = {
     create: false,
     valueField: 'id',
     labelField: 'name',
@@ -92,93 +78,140 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, pop
     onChange(val) { $scope.data.Warehouse = parseInt(val, 10) },
   }
 
-  const getLocationAddress = (location) => {
-    if (!location) {
-      return ''
+  const status = [
+    {
+      name: 'SALE_ORDER',
+      label_name: 'Sale Order',
+      date: 'SalesOrderDate',
+    },
+    {
+      name: 'DELIVERY',
+      label_name: 'Delivery',
+      date: 'DeliveryDate',
+    },
+    {
+      name: 'INVOICE',
+      label_name: 'Invoice',
+      date: 'InvoiceDate',
+    },
+  ]
+
+  const callbackRemoveLineItems = (item) => {
+    if (item) {
+      const invoice_id = $scope.data.id
+      return api.deleteInvoiceLineItem(invoice_id, item.id)
     }
+    return undefined
+  }
+
+  const getLocationAddress = (location) => {
+    if (!location) { return '' }
     return `${location.AddressLine1} ${location.AddressLine2} ${location.AddressLine3} \
-${location.Country} ${location.PostCode}`
+            ${location.Country} ${location.PostCode}`
   }
 
-  const check = (num = '') => {
-    const test_num = num.toString()
-    return (test_num.split('.')[1] || []).length
+  const openWarnDialog = () => {
+    ngDialog.open({
+      template: `<p>
+                  <b>Please add Product Items</b>
+                  <div><span>Add Product, Quantity and Price</span></div>
+                </p>`,
+      plain: true })
   }
 
-  $scope.$watch('data.Location', (newValue) => {
+  const onChangeLocation = (newValue) => {
     const location = _.findWhere($scope.locations, { id: newValue })
     $scope.location_address = getLocationAddress(location)
     if (location) { $scope.location_attention = location.Attention }
-  })
-
-  $scope.getAmount = (line_item) => {
-    const amount = (line_item.Quantity * line_item.UnitAmount) || 0
-    return amount.toFixed(2)
   }
 
-  $scope.addLineItem = () => $scope.data.LineItems.push({})
-
-  $scope.getSubTotal = () => {
-    const total = _.reduce($scope.data.LineItems, (total, i) => total + ((i.Quantity || 0) * (i.UnitAmount || 0))
-      , 0)
-    return total
-  }
-
-  $scope.getTaxTotal = () => {
-    const total = _.reduce($scope.data.LineItems, (total, i) => {
-      const tax_rate_obj = _.findWhere($scope.tax_rates, { tax_type: i.TaxType })
-      let tax_rate = __guard__(tax_rate_obj, x => x.rate) || 0
-      tax_rate /= 100
-      return total + (((i.Quantity || 0) * (i.UnitAmount || 0)) * tax_rate)
+  const save = (callback) => {
+    if (!$scope.data.Attention) {
+      $scope.data.Attention = $scope.location_attention
     }
-      , 0)
-    $scope.data.TotalTax = total.toFixed(2)
-    return total
+
+    const { id } = $scope.data || $state.params
+
+    $scope.data.LineItems = _.filter($scope.data.LineItems, i => i.Product)
+
+    if (id) {
+      const json = angular.toJson($scope.data)
+
+      $q.all(_.map($scope.removeLineItems, callbackRemoveLineItems))
+      .then(() =>
+          api.updateSale(id, json).then((response) => callback ? callback(response.data) : undefined)
+      )
+    } else {
+      api.addSale(angular.toJson($scope.data)).then((response) => callback ? callback(response.data) : undefined)
+    }
   }
 
-  $scope.getTotal = () => {
-    const total = $scope.getSubTotal() + $scope.getTaxTotal()
-    $scope.data.Total = total.toFixed(2)
-    return total
+  const updateStatusModel = (index) => {
+    const date = new Date($scope.data.Date)
+    $scope.data.Status = $scope.status[index].name
+    $scope.data[$scope.status[index].date] = date.toISOString()
+    save((data) => { $scope.data = data })
   }
 
-  const amountFieldTemplate = '<div class="ui-grid-cell-contents ng-binding ng-scope"> \
-{{ grid.appScope.getAmount(row.entity) }}</div>'
-  const cellMenuTemplate = '\
-<a ng-click="grid.appScope.removeLineItem(row, rowRenderIndex, rowIndex, this)" \
-class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
-</a>'
-
-  uiGridValidateService.setValidator('positive', (() =>
-      (oldValue, newValue) => {
-        if (newValue <= 0) {
-          return false
-        }
-        return true
+  const saveAndTryUpdateStock = (index) => {
+    const callback = (data) => {
+      $scope.data = data
+      api.updateStock($scope.data.id).then(() => {
+        updateStatusModel(index)
+      }, (response) => {
+        ngDialog.open({
+          template: error_quantity_template,
+          plain: true,
+          className: 'ngdialog-theme-default',
+          controller: 'ErrorQuantity',
+          resolve: {
+            not_enough_list() { return response.data },
+            warehouses() { return $scope.warehouses },
+            products() { return $scope.products },
+            sale() { return $scope.data },
+          },
+        })
       })
-      , () => 'value must be a positive integer')
+    }
+    save((data) => callback(data))
+  }
 
-  uiGridValidateService.setValidator('not_negative', (() =>
-      (oldValue, newValue) => {
-        if (newValue < 0) {
-          return false
-        }
-        return true
-      })
-      , () => 'value must be zero or negative integer')
+  const changeStatus = () => {
+    const currentStatus = $scope.data.Status
+    let index = _.findIndex($scope.status, (val) => val.name === currentStatus)
+    index += 1
+    const next_status = $scope.status[index]
+    if (next_status) {
+      const is_status_invoice = next_status.name === _.last($scope.status).name
+      if (is_status_invoice) {
+        const is_product_items = $scope.isLineItems().length && $scope.isLineItemsValid()
+        if (is_product_items) {
+          saveAndTryUpdateStock(index)
+        } else { openWarnDialog() }
+      } else { updateStatusModel(index) }
+    }
+  }
 
-  uiGridValidateService.setValidator('decimal', (() =>
-      (oldValue, newValue) => {
-        if (check(newValue) > 4) {
-          return false
-        }
-        return true
-      })
-      , () => 'value exceeds 4 decimal places')
+  // TODO: save before export Invoice
+  $scope.export = () => popup(api.getInvoiceExportXeroUrl($state.params.id))
 
-  $scope.natural = field =>
-      item => naturalService.naturalValue(item[field])
+  $scope.isEdit = $state.params.hasOwnProperty('id')
 
+  $scope.data = initialData
+  $scope.tax_rates = []
+  $scope.customers = []
+  $scope.locations = []
+  $scope.warehouses = []
+  $scope.products = []
+  $scope.product_items = []
+  $scope.location_address = ''
+  $scope.removeLineItems = []
+  $scope.customerConfig = customerConfig
+  $scope.locationConfig = locationConfig
+  $scope.warehouseConfig = warehouseConfig
+  $scope.status = status
+
+  $scope.$watch('data.Location', (newValue) => onChangeLocation(newValue))
 
   $scope.onSelect = (model, rowRenderIndex) => {
     const line = $scope.data.LineItems[rowRenderIndex]
@@ -186,6 +219,16 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
     const tax_rate = _.findWhere($scope.tax_rates, { id: __guard__(product, x => x.TaxRate) })
     line.TaxType = __guard__(tax_rate, x1 => x1.tax_type)
   }
+
+  $scope.changeStatus = () => changeStatus()
+
+  $scope.isAvailableToSave = () => {
+    if ($scope.isLineItems().length) {
+      return $scope.isLineItemsValid()
+    }
+    return true
+  }
+
 
   $scope.gridOptions = {
     enableSorting: false,
@@ -196,7 +239,6 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
       {
         field: 'Product',
         cellFilter: 'productFilter : col.colDef',
-        // editableCellTemplate: 'templates/sales/cellEditTemplateProduct.html',
         editableCellTemplate: cellEditTemplateProduct,
         editDropdownIdLabel: 'id',
         editDropdownValueLabel: 'Code',
@@ -240,12 +282,7 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
     ],
   }
 
-  $scope.removeLineItem = (row) => {
-    $scope.removeLineItems.push(_.findWhere($scope.data.LineItems, { id: row.entity.id }))
-    $scope.data.LineItems = _.reject($scope.data.LineItems, i => (
-      i.$$hashKey === row.entity.$$hashKey
-    ))
-  }
+  $scope.save = () => save(() => $state.go('sales'))
 
   const init = () => {
     const onCustomers = customers => { $scope.customers = customers }
@@ -253,10 +290,9 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
     const onLastDocId = data => { $scope.data.InvoiceNumber = data.sale_next_id }
 
     const onTaxRates = tax_rates =>
-          // ToDo: I don't know why
-          // $scope.tax_rates = res.tax_rates.data
-          _.each(tax_rates, i => $scope.tax_rates.push(i))
-
+      // ToDo: I don't know why
+      // $scope.tax_rates = res.tax_rates.data
+      _.each(tax_rates, i => $scope.tax_rates.push(i))
 
     const onProducts = (products) => {
       $scope.products = products
@@ -270,6 +306,10 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
 
     const onSale = (sale) => {
       _.extend($scope.data, sale)
+      if (!$scope.isEdit) {
+        $scope.data.Status = _.first(status).name
+        $scope.data.SalesOrderDate = $scope.data.Date
+      }
       if (!$scope.data.Warehouse) {
         const warehouse = _.first($scope.warehouses)
         if (warehouse) { $scope.data.Warehouse = warehouse.id }
@@ -279,7 +319,6 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
       const customer = _.findWhere($scope.customers, { id: $scope.data.Contact })
       $scope.locations = __guard__(customer, x => x.Locations) || []
     }
-
 
     const promises = {
       customers: api.getCustomers(),
@@ -303,69 +342,6 @@ class="demo-delete-row btn btn-danger btn-xs"><i class="fa fa-remove"></i> \
       if (res.last_doc_id) { onLastDocId(res.last_doc_id.data) }
     })
   }
-
-  const callbackRemoveLineItems = (item) => {
-    if (item) {
-      const invoice_id = $scope.data.id
-      return api.deleteInvoiceLineItem(invoice_id, item.id)
-    }
-    return undefined
-  }
-
-  const validateUnitAmount = (UnitAmount) => {
-    const length = check(UnitAmount)
-    if ((typeof UnitAmount === 'string' && UnitAmount !== '') || typeof UnitAmount === 'number') {
-      UnitAmount = Number(UnitAmount)
-    } else {
-      UnitAmount = undefined
-    }
-    if (UnitAmount >= 0 && length <= 4) {
-      return true
-    }
-    return false
-  }
-
-  $scope.$watch('data.LineItems', () => {
-      // Add new line item
-    const last = $scope.data.LineItems[$scope.data.LineItems.length - 1]
-    if (__guard__(last, x => x.Product)) {
-      $scope.addLineItem()
-    }
-  }, true)
-
-  $scope.isLineItems = () => _.filter($scope.data.LineItems, val => val.Product)
-
-
-  $scope.isLineItemsValid = () => {
-    for (const item of $scope.data.LineItems) {
-      if (item.Product && (!item.Quantity || !validateUnitAmount(item.UnitAmount))) {
-        return false
-      }
-    }
-    return true
-  }
-
-  $scope.save = () => {
-    if (!$scope.data.Attention) {
-      $scope.data.Attention = $scope.location_attention
-    }
-
-    const { id } = $state.params
-
-    $scope.data.LineItems = _.filter($scope.data.LineItems, i => i.Product)
-
-    if (id) {
-      const json = angular.toJson($scope.data)
-
-      $q.all(_.map($scope.removeLineItems, callbackRemoveLineItems))
-      .then(() =>
-          api.updateSale(id, json).then(() => $state.go('sales'))
-      )
-    } else {
-      api.addSale(angular.toJson($scope.data)).then(() => $state.go('sales'))
-    }
-  }
-
 
   init()
 }

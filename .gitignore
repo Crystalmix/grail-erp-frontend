@@ -6,3 +6,7 @@ npm-debug.log
 
 dist/
 coverage/
+
+src/css/
+src/js/
+src/lib/

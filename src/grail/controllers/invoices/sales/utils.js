@@ -1,14 +1,14 @@
+/* eslint no-param-reassign: 0 */
+/* eslint no-underscore-dangle: 0 */
+
 import _ from 'underscore'
 import $ from 'jquery'
-
-/* eslint no-underscore-dangle: 0 */
-function __guard__(value, transform) {
-  return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined
-}
+import { __guard__ } from '../utils'
 
 export const productFilter = () =>
   (item, collDef) => {
-    item = _.findWhere(__guard__(collDef, x => x.editDropdownOptionsArray) || [], { id: item })
+    const array = __guard__(collDef, x => x.editDropdownOptionsArray)
+    item = _.findWhere(array || [], { id: item })
     if (!item) {
       return ''
     }
@@ -30,7 +30,7 @@ export const taxRateFilter = (settings_constants, profile_settings) =>
 
 
 export const uiSelectWrap = ($document, uiGridEditConstants) =>
-  ($scope, $elm, $attr) => {
+  ($scope, $elm) => {
     const docClick = (evt) => {
       if ($(evt.target).closest('.ui-select-container').size() === 0) {
         $scope.$emit(uiGridEditConstants.events.END_CELL_EDIT)

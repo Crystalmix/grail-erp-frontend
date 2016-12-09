@@ -6,15 +6,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="export()" ng-if="isNew">Export</button>
-                        <button type="button" class="btn btn-primary" ng-if="isNew" ng-click="pdf(data, location_attention, customers, products, tax_rates, getSubTotal(), getTaxTotal(), getTotal())" ng-controller="createPDF">Get PDF</button>
-                        <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="details.$invalid || !isLineItems().length || !isLineItemsValid()">Save</button>
+                        <button type="button" class="btn btn-primary" ng-click="export()" ng-disabled="!isLineItems().length || !isLineItemsValid()" ng-if="isEdit">Export</button>
+                        <button type="button" class="btn btn-primary" ng-if="isEdit" ng-click="pdf(data, location_attention, customers, products, tax_rates, getSubTotal(), getTaxTotal(), getTotal())" ng-controller="createPDF">Get PDF</button>
+                        <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="details.$invalid || !isAvailableToSave()">Save</button>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label for="customer">Customer <span class="required-asterix">*</span></label>
                         <selectize id="customer" config="customerConfig" options='customers' ng-model="data.Contact"
@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="date">Date <span class="required-asterix">*</span></label>
                         <input name="date" class="form-control" id="date" ng-model="data.Date"
@@ -43,10 +43,22 @@
                                required>
                     </div>
                 </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="due-date">Due Date</label>
+                        <input name="due-date" class="form-control" id="due-date" ng-model="data.DueDate"
+                               data-date-format="dd-MM-yyyy"
+                               data-model-date-format="yyyy-MM-dd"
+                               date-type="string"
+                               placeholder="DueDate"
+                               data-autoclose="1" bs-datepicker>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label for="customer">Location <span class="required-asterix">*</span></label>
                         <selectize id="location" config="locationConfig" options='locations' ng-model="data.Location" required=""
@@ -54,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="attn">Location Attention</label>
                         <input type="text" class="form-control" id="attn" placeholder="{{location_attention}}"
@@ -72,7 +84,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label for="customer">Warehouse <span class="required-asterix">*</span></label>
                         <selectize id="warehouse" config="warehouseConfig" options='warehouses'
@@ -81,12 +93,33 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label for="attn">Location Address</label>
                         <input type="text" disabled="disabled" class="form-control" id="location_address"
                                placeholder="Location Address..." ng-model="location_address">
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2" ng-repeat='status_item in status'>
+                <div class="status panel" ng-class="{'active': status_item.name == data.Status}">
+                  <div class="pad-all">
+                    <p class="text-lg text-semibold"> {{status_item.label_name}} </p>
+                    <input type="text" name="date" class="form-control" id="date" ng-model="data[status_item.date]"
+                           data-date-format="dd-MM-yyyy"
+                           data-model-date-format="yyyy-MM-dd"
+                           placeholder="Date"
+                           data-autoclose="1"
+                           bs-datepicker>
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary pull-right" ng-disabled="details.$invalid" ng-click="changeStatus()">
+                    Action
+                  </button>
                 </div>
             </div>
 
@@ -111,3 +144,14 @@
         </form>
     </div>
 </div>
+
+<!-- I don't know where it should be!!!! -->
+<style>
+.status.panel {
+    box-shadow: none;
+    border: 1px solid #d4d4d4;
+}
+.status.panel.active {
+  border: 1px solid #ba68c8;
+}
+</style>
