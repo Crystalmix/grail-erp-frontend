@@ -18,8 +18,11 @@
 
 </head>
 
-<body ng-app="grail" ng-controller="Init">
-<div id="container" class="effect mainnav-lg">
+<body ng-app="grail" ng-controller="Init" ng-cloak>
+
+<ui-view ng-if="!username"></ui-view>
+
+<div id="container" class="effect mainnav-lg" ng-if="username">
 
     <header id="navbar">
         <div id="navbar-container" class="boxed">
