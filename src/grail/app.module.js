@@ -22,6 +22,9 @@ import 'ui-select/dist/select.css'
 import 'angular-loading-bar'
 import 'angular-loading-bar/build/loading-bar.min.css'
 
+// magic-check
+import 'magic-check/css/magic-check.css'
+
 
 import 'selectize'
 import 'selectize/dist/css/selectize.default.css'

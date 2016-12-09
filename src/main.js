@@ -15,6 +15,8 @@ import './nifty_template/nifty.css'
 import './nifty_template/nifty'
 import './grailerp.css'
 
+import './main.css'
+
 
 // import app from './grail/app.module'
 import './grail/app.module'

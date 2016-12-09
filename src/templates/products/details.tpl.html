@@ -63,29 +63,43 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div ng-show="accounts" class="col-md-6">
+            <div class="row">
+
+                <div ng-show="accounts" class="col-md-4">
                     <div class="form-group" ng-class="{placeholder: product.Account == default_sales_account}">
                         <label for="sales_account">Sales Account <span class="required-asterix">*</span></label>
                         <selectize id="sales-account" config="accountConfig" options='accounts'
                                    ng-model="product.Account"></selectize>
                     </div>
                 </div>
-                <div ng-show="taxRates" class="col-md-3">
+                <div ng-show="taxRates" class="col-md-4">
                     <div class="form-group" ng-class="{placeholder: product.TaxRate == default_tax_rule}">
                         <label for="sales_account">Tax Rule Sales <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxConfig" options='taxRates'
                                    ng-model="product.TaxRate"></selectize>
                     </div>
                 </div>
-                <div ng-show="taxRates" class="col-md-3">
+                <div ng-show="taxRates" class="col-md-4">
                     <div class="form-group" ng-class="{placeholder: product.tax_rate_purchases == default_tax_rule_purchases}">
                         <label for="sales_account">Tax Rule Purchases <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxPurchaseConfig" options='taxRates'
                                    ng-model="product.tax_rate_purchases"></selectize>
                     </div>
                 </div>
+
             </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                  <div class="checkbox">
+                    <input id="demo-form-checkbox" class="magic-checkbox" ng-model="product.scrap_credits" type="checkbox">
+                    <label for="demo-form-checkbox">Scrap Credits</label>
+                  </div>
+                </div>
+            </div>
+
         </form>
         <div ng-show="is_new">
             <div class="row">
