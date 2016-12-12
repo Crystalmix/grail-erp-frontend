@@ -19,6 +19,7 @@ export default ($scope, $controller, product_generator, ngDialog, api) => {
   $scope.product.Account = $scope.default_sales_account
   $scope.product.TaxRate = $scope.default_tax_rule
   $scope.product.tax_rate_purchases = $scope.default_tax_rule_purchases
+  $scope.product.cogs_account = $scope.default_cogs_account
 
   const renderGrid = () => {
     const prepareItems = () => {
@@ -61,7 +62,12 @@ export default ($scope, $controller, product_generator, ngDialog, api) => {
       _.find($scope.options, option => _.unique(option).length !== option.length)
 
 
-  api.getAccounts().then(response => { $scope.accounts = response.data })
+  api.getAccounts().then(response => {
+    $scope.accounts = response.data.map(i => {
+      i.label = `${i.Code} - ${i.Name}`
+      return i
+    })
+  })
 
   api.getTaxRates().then(response => { $scope.taxRates = response.data })
 

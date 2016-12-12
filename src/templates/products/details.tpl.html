@@ -67,21 +67,28 @@
 
             <div class="row">
 
-                <div ng-show="accounts" class="col-md-4">
+                <div ng-show="accounts" class="col-md-3">
                     <div class="form-group" ng-class="{placeholder: product.Account == default_sales_account}">
                         <label for="sales_account">Sales Account <span class="required-asterix">*</span></label>
                         <selectize id="sales-account" config="accountConfig" options='accounts'
                                    ng-model="product.Account"></selectize>
                     </div>
                 </div>
-                <div ng-show="taxRates" class="col-md-4">
+                <div ng-show="taxRates" class="col-md-3">
                     <div class="form-group" ng-class="{placeholder: product.TaxRate == default_tax_rule}">
                         <label for="sales_account">Tax Rule Sales <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxConfig" options='taxRates'
                                    ng-model="product.TaxRate"></selectize>
                     </div>
                 </div>
-                <div ng-show="taxRates" class="col-md-4">
+                <div ng-show="taxRates" class="col-md-3">
+                    <div class="form-group" ng-class="{placeholder: product.cogs_account == default_cogs_account}">
+                        <label for="cogs_account">COGS Account <span class="required-asterix">*</span></label>
+                        <selectize id="cogs_account" config="cogsConfig" options='accounts'
+                                   ng-model="product.cogs_account"></selectize>
+                    </div>
+                </div>
+                <div ng-show="taxRates" class="col-md-3">
                     <div class="form-group" ng-class="{placeholder: product.tax_rate_purchases == default_tax_rule_purchases}">
                         <label for="sales_account">Tax Rule Purchases <span class="required-asterix">*</span></label>
                         <selectize id="tax_rate-account" config="taxPurchaseConfig" options='taxRates'

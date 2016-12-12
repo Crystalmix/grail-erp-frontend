@@ -160,7 +160,10 @@ export default ($scope, $controller, api, $state, ngDialog, uiGridConstants, $q)
   }
 
   $q.all(promises).then((res) => {
-    $scope.accounts = res.accounts.data
+    $scope.accounts = res.accounts.data.map(i => {
+      i.label = `${i.Code} - ${i.Name}`
+      return i
+    })
     $scope.taxRates = res.tax_rates.data
     $scope.warehouses = res.warehouses.data
     return callbackInitProduct(res.products)
