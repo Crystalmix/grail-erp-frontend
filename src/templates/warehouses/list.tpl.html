@@ -6,13 +6,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="btn-group pull-left">
-                        <button class="btn btn-default"
-                                ng-click="exportStockReport()">Export</button>
-                        <button class="btn btn-default dropdown-toggle dropdown-toggle-icon"
-                                data-toggle="dropdown" type="button" aria-expanded="false">
-                            <i class="fa fa-caret-down"></i>
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                            Export &nbsp; <i class="fa fa-caret-down"></i>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">Download</li>
                             <li><a href="javascript:void(0)" ng-click="exportStockReport()">Stock Report</a></li>
                             <li><a href="javascript:void(0)" ng-click="exportStockDetailReport()">Detailed Stock Report</a></li>
                         </ul>
