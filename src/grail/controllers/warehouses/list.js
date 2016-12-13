@@ -13,6 +13,13 @@ export default ($scope, api, uiGridConstants, $state, profile_settings, $window)
     $window.location.assign(api.downloadStockReportByDate(year, month, day))
   }
 
+  $scope.exportStockDetailReport = () => {
+    const year = $scope.stockReportDate.getUTCFullYear()
+    const month = $scope.stockReportDate.getUTCMonth() + 1
+    const day = $scope.stockReportDate.getUTCDate()
+    $window.location.assign(api.downloadStockDetailReportByDate(year, month, day))
+  }
+
   $scope.gridOptions = {
     enableRowSelection: true,
     multiSelect: false,

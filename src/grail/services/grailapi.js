@@ -114,5 +114,10 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
     `${configs.API_SERVER}/stocks/stock_report/${year}/${month}/${day}/?token=${auth_status.getToken()}`
     )
 
+  api.downloadStockDetailReport = () => `${configs.API_SERVER}/stocks/stock_detail_report/?token=${auth_status.getToken()}`
+  api.downloadStockDetailReportByDate = (year, month, day) => (
+    `${configs.API_SERVER}/stocks/stock_detail_report/${year}/${month}/${day}/?token=${auth_status.getToken()}`
+    )
+
   return api
 }
