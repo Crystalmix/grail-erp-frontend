@@ -1,8 +1,17 @@
 /* @flow weak */
 /* eslint no-param-reassign: 0 */
 
-export default ($scope, api, uiGridConstants, $state, profile_settings) => {
+export default ($scope, api, uiGridConstants, $state, profile_settings, $window) => {
   const view_name = 'warehouses'
+
+  $scope.stockReportDate = new Date()
+
+  $scope.exportStockReport = () => {
+    const year = $scope.stockReportDate.getUTCFullYear()
+    const month = $scope.stockReportDate.getUTCMonth() + 1
+    const day = $scope.stockReportDate.getUTCDate()
+    $window.location.assign(api.downloadStockReportByDate(year, month, day))
+  }
 
   $scope.gridOptions = {
     enableRowSelection: true,
@@ -16,7 +25,7 @@ export default ($scope, api, uiGridConstants, $state, profile_settings) => {
       field: 'name',
       sort: {direction: uiGridConstants.ASC},
       visible: profile_settings.getSettings(view_name, 'name')
-    }]
+    }],
   }
 
   $scope.gridOptions.onRegisterApi = (gridApi) => {
@@ -32,7 +41,7 @@ export default ($scope, api, uiGridConstants, $state, profile_settings) => {
   }
 
   api.getWarehouses().then((response) => {
-    if(response) {
+    if (response) {
       $scope.gridOptions.data = response.data
     }
   })

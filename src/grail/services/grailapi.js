@@ -107,5 +107,12 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   // Transaction
   api.addTransaction = (newTransaction: {}) => api.request('POST', '/transactions/', newTransaction)
 
+  // Reports
+
+  api.downloadStockReport = () => `${configs.API_SERVER}/stocks/stock_report/?token=${auth_status.getToken()}`
+  api.downloadStockReportByDate = (year, month, day) => (
+    `${configs.API_SERVER}/stocks/stock_report/${year}/${month}/${day}/?token=${auth_status.getToken()}`
+    )
+
   return api
 }

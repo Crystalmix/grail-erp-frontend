@@ -5,6 +5,25 @@
         <div class="pad-btm form-inline">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="btn-group pull-left">
+                        <button class="btn btn-default"
+                                ng-click="exportStockReport()">Export</button>
+                        <button class="btn btn-default dropdown-toggle dropdown-toggle-icon"
+                                data-toggle="dropdown" type="button" aria-expanded="false">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="exportStockReport()">Stock Report</a></li>
+                            <li><a ng-click="exportStockReport()">Detailed Stock Report</a></li>
+                        </ul>
+                    </div>
+                    <div class="pad-lft input-group date form-group">
+                        <input name="date" class="form-control" id="date" ng-model="stockReportDate"
+                              data-date-format="dd-MM-yyyy"
+                              placeholder="Stock Report"
+                              data-autoclose="1" bs-datepicker>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
                     <a class="btn btn-primary pull-right" ui-sref="warehouse_add" ui-sref-active="active">Add
                         warehouse</a>
                 </div>
