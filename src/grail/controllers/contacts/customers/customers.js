@@ -1,8 +1,10 @@
 /* @flow weak */
 /* eslint no-param-reassign: 0 */
 
-export default ($scope, api, uiGridConstants, $state, popup, profile_settings) => {
+export default ($scope, api, uiGridConstants, $state, popup, profile_settings, xeroStatus) => {
   const view_name = 'customers'
+
+  xeroStatus.checkXeroStatus(xeroStatus.isXeroExpired)
 
   $scope.import = () => popup(api.getContactsImportXeroUrl())
   $scope.export = () => popup(api.getContactsExportXeroUrl())

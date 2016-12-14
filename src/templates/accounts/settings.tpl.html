@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <h4>Xero Integration</h4>
-                    <a class="btn btn-success" ng-click="import()">
+                    <a class="btn btn-success" ng-disabled="isXeroExpired" ng-click="isXeroExpired || import()">
                         Connect to Xero
                     </a>
                 </div>
@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <h4>Xero Settings</h4>
-                    <a class="btn btn-success" ng-click="downloadAccounts()">
+                    <a class="btn btn-success" ng-disabled="isXeroExpired" ng-click="isXeroExpired || downloadAccounts()">
                         Download Sales + Tax Codes
 
                     </a>

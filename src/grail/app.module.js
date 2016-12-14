@@ -98,6 +98,8 @@ import { productFilter, taxRateFilter, uiSelectWrap } from './controllers/invoic
 import Purchases from './controllers/invoices/purchases/list'
 import PurchaseDetails from './controllers/invoices/purchases/details'
 
+import XeroStatus from './services/xeroStatus'
+
 const app_requirements = [
   'angular-ladda',
   'ngjsgrid',
@@ -145,6 +147,7 @@ app.factory('product_generator', product_generator)
 app.factory('combine', array_combinations)
 app.factory('naturalService', naturalService)
 app.factory('pdfmake', pdfmake)
+app.factory('xeroStatus', XeroStatus)
 
 app.controller('Init', Init)
 app.controller('BaseDetails', BaseDetails)

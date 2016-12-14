@@ -5,7 +5,9 @@
 import _ from 'underscore'
 import { __guard__, validateUnitAmount, lengthDecimalPart } from './utils'
 
-export default ($scope, naturalService, uiGridValidateService) => {
+export default ($scope, naturalService, uiGridValidateService, xeroStatus) => {
+  xeroStatus.checkXeroStatus(xeroStatus.isXeroExpired)
+
   const getAmount = (line_item) => {
     const amount = (line_item.Quantity * line_item.UnitAmount) || 0
     return amount.toFixed(2)

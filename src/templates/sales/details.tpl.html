@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="export()" ng-disabled="!isLineItems().length || !isLineItemsValid()" ng-if="isEdit">Export</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="isXeroExpired" ng-click="isXeroExpired || export()" ng-disabled="!isLineItems().length || !isLineItemsValid()" ng-if="isEdit">Export</button>
                         <button type="button" class="btn btn-primary" ng-if="isEdit" ng-click="pdf(data, location_attention, customers, products, tax_rates, getSubTotal(), getTaxTotal(), getTotal())" ng-controller="createPDF">Get PDF</button>
                         <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="details.$invalid || !isAvailableToSave()">Save</button>
                     </div>

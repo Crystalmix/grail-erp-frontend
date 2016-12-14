@@ -53,6 +53,8 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   api.getProfile = () => api.user_profile_request('GET', '/user/')
   api.updateProfile = (data: {}) => api.user_profile_request('PUT', '/user/', data)
 
+  api.getXeroConnectUrl = () => `${configs.API_SERVER}/xero/connect/?token=${auth_status.getToken()}`
+
   api.getOrganizartions = () => api.request('GET', '/organizations/')
   api.updateOrganization = (id: number, data: {}) => api.request('PUT', `/organizations/${id}/`, data)
   api.getOrganizartionImportXeroUrl = () => `${configs.API_SERVER}/xero/organizations/organization/import/?token=${auth_status.getToken()}`
@@ -118,6 +120,9 @@ export default ($http, configs, auth_status, $state, $exceptionHandler, xero: Xe
   api.downloadStockDetailReportByDate = (year, month, day) => (
     `${configs.API_SERVER}/stocks/stock_detail_report/${year}/${month}/${day}/?token=${auth_status.getToken()}`
     )
+
+  // Xero Token
+  api.getXeroToken = () => api.request('GET', '/xero_token/')
 
   return api
 }

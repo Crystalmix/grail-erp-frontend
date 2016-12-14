@@ -1,7 +1,8 @@
 /* @flow weak */
 /* eslint no-param-reassign: 0 */
 
-export default ($scope, popup, api, profile_settings, settings_constants) => {
+export default ($scope, popup, api, profile_settings, settings_constants, xeroStatus) => {
+  xeroStatus.checkXeroStatus(xeroStatus.isXeroExpired)
 
   $scope.accountConfig = {
     create: false,

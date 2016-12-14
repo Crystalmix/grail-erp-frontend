@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-primary" ng-click="export()" ng-if="isNew">Export</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="isXeroExpired" ng-click="isXeroExpired || export()" ng-if="isNew">Export</button>
                         <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="details.$invalid">
                             Save
                         </button>

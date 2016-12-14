@@ -6,8 +6,8 @@
         <div class="pad-btm form-inline">
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-primary" ng-click="import()">Import from Xero</a>
-                    <a class="btn btn-primary" ng-click="export()">Export to Xero</a>
+                    <a class="btn btn-primary" ng-click="isXeroExpired || import()" ng-disabled="isXeroExpired" >Import from Xero</a>
+                    <a class="btn btn-primary" ng-click="isXeroExpired || export()" ng-disabled="isXeroExpired">Export to Xero</a>
                     <a class="btn btn-primary pull-right" ui-sref="customer_add" ui-sref-active="active">Add
                         Customer</a>
                 </div>

@@ -5,8 +5,10 @@
 import _ from 'underscore'
 import angular from 'angular'
 
-export default ($scope, api, $state, ngDialog, $controller, popup, xero, $q, uuidFactory) => {
+export default ($scope, api, $state, ngDialog, $controller, popup, xero, $q, uuidFactory, xeroStatus) => {
   const removed_locations_ids = []
+
+  xeroStatus.checkXeroStatus(xeroStatus.isXeroExpired)
 
   const prepareLocationsToSave = () => {
     $scope.customer.Locations = _.reject($scope.customer.Locations, i => !i.Name)

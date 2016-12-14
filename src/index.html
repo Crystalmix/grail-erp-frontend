@@ -121,6 +121,13 @@
 
             <!--Page content-->
             <div id="page-content">
+
+                <!--Xero-->
+                <div class="alert alert-dark" ng-if="isXeroExpired">
+                    <strong>Warning!</strong> Your Xero Token has Expired.
+                    <button type="button" ng-click="xeroConnect()" class="btn btn-rounded btn-success">Connect to xero</button>
+                </div>
+
                 <ui-view></ui-view>
             </div>
             <!--END Page content-->

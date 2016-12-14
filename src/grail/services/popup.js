@@ -11,6 +11,6 @@ export default ($window) => (
 
     const windowOptions = `location=no,status=no,width=${w},height=${h},resizable=no,top=${top},left=${left}`
 
-    $window.open(path, windowName, windowOptions)
+    return $window.open(path, windowName, windowOptions)
   }
 )
