@@ -7,7 +7,7 @@ Requirements:
 ```sh
 $ brew install yarn
 $ brew install flow
-$ yarn global add webpack@2.1.0-beta.27 webpack-dev-server@2.1.0-beta.11
+$ yarn global add webpack@beta webpack-dev-server@beta
 
 $ cd grail-erp-frontend
 # Install requirements
