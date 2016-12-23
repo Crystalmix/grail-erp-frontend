@@ -212,12 +212,14 @@ export default ($scope, api, $state, $q, $controller, uiGridValidateService, ngD
   $scope.status = status
 
   $scope.$watch('data.Location', (newValue) => onChangeLocation(newValue))
+  $scope.$watch('data.Date', (newValue) => $scope.data.SalesOrderDate = newValue)
 
   $scope.onSelect = (model, rowRenderIndex) => {
     const line = $scope.data.LineItems[rowRenderIndex]
     const product = _.findWhere($scope.products, { Code: model.base_product_name })
     const tax_rate = _.findWhere($scope.tax_rates, { id: __guard__(product, x => x.TaxRate) })
     line.TaxType = __guard__(tax_rate, x1 => x1.tax_type)
+    line.UnitAmount = __guard__(product.sell_price, x => x)
   }
 
   $scope.changeStatus = () => changeStatus()
